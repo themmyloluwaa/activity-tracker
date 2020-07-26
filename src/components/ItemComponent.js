@@ -3,8 +3,8 @@ import { View, Text } from "react-native";
 import { ButtonGroup, ListItem, Icon } from "react-native-elements";
 import genColors from "../utils/genColors";
 import { themeStyle, defaultAppStyle } from "../utils/appStyles";
-
-const ItemComponent = ({ title, icon, navigation }) => {
+import { formateDate } from "../utils/dateFormatter";
+const ItemComponent = ({ item, icon, navigation }) => {
   return (
     <ListItem
       containerStyle={{
@@ -14,7 +14,7 @@ const ItemComponent = ({ title, icon, navigation }) => {
         marginBottom: 15,
         maxWidth: defaultAppStyle.width - 32
       }}
-      onPress={() => navigation.navigate("Preview", { data: title })}
+      onPress={() => navigation.navigate("Preview", { data: item })}
       title={() => (
         <View
           style={{
@@ -26,7 +26,7 @@ const ItemComponent = ({ title, icon, navigation }) => {
               fontSize: 28
             }}
           >
-            {title}
+            {item.title}
           </Text>
           <Icon name="dot-single" type="entypo" color={genColors()} size={30} />
         </View>
@@ -48,7 +48,7 @@ const ItemComponent = ({ title, icon, navigation }) => {
             size={15}
             style={{ paddingRight: 10, fontWeight: "bold" }}
           />
-          <Text>7:30am - 8:00am</Text>
+          <Text>{formateDate(item.startTime, "en", "time")} - {formateDate(item.startTime, "en", "time")}</Text>
         </View>
       )}
       rightElement={() => (

@@ -5,6 +5,8 @@ import { Icon, Divider, Button, Overlay } from "react-native-elements";
 import { defaultAppStyle } from "../utils/appStyles";
 import ActivityInputComponent from "../components/ActivityInputComponent";
 import PreviewComponent from "../components/PreviewComponent";
+import { connect } from "react-redux";
+import { editActivity, deleteActivity } from "../redux/actions/activityAction";
 const PreviewScreen = ({ navigation }) => {
   return (
     <Layout
@@ -28,4 +30,15 @@ const PreviewScreen = ({ navigation }) => {
   );
 };
 
-export default PreviewScreen;
+const mapStateToProps = state => {
+  return {
+    activities: state.activitiesReducer.activities
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    delete: key => dispatch(deleteActivity(key)),
+    edit: data => dispatch(editActivity(data))
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(PreviewScreen);

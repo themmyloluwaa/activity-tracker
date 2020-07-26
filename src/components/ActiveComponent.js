@@ -28,14 +28,14 @@ const DATA = [
     title: "Third Item"
   }
 ];
-const ActiveComponent = ({ navigation }) => {
+const ActiveComponent = ({ navigation, ...props }) => {
   console.log("active");
   return (
     <FlatList
-      data={DATA}
+      data={props.data}
       renderItem={({ item }) => (
         <ItemComponent
-          title={item.title}
+          item={item}
           navigation={navigation}
           icon={{
             name: "delete",
@@ -44,7 +44,7 @@ const ActiveComponent = ({ navigation }) => {
           }}
         />
       )}
-      keyExtractor={item => item.id}
+      keyExtractor={item => item.key}
       ListHeaderComponent={() => (
         <Text
           style={{

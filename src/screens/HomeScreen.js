@@ -7,15 +7,18 @@ import HeadingComponent from "../components/HeadingComponent";
 import ActiveComponent from "../components/ActiveComponent";
 import CompletedComponent from "../components/CompletedComponent";
 import SortComponent from "../components/SortComponent";
+import { connect } from "react-redux";
+import { deleteActivity } from "../redux/actions/activityAction";
 
-const renderComponent = (index, navigation) => {
+const renderComponent = (index, navigation, data) => {
   if (index === 0) {
-    return <ActiveComponent navigation={navigation} />;
+    return <ActiveComponent navigation={navigation} data={data.activities} />;
   } else {
-    return <CompletedComponent navigation={navigation} />;
+    return <CompletedComponent navigation={navigation} data={data.completed} />;
   }
 };
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({ navigation, ...props }) => {
+  console.log(props.data.activities.length);
   const [index, setIndex] = useState(0);
   //   const [counter, setCounter] = useState(0);
 
@@ -48,7 +51,7 @@ const HomeScreen = ({ navigation }) => {
         }}
       />
       <SortComponent />
-      {renderComponent(index, navigation)}
+      {renderComponent(index, navigation, props.data)}
       {/* <Text
         style={{
           color: "#fff"
@@ -69,6 +72,17 @@ const HomeScreen = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({});
-
-export default HomeScreen;
+const mapStateToProps = state => {
+  return {
+    data: {
+      activities: state.activitiesReducer.activities,
+      completed: state.activitiesReducer.activities
+    }
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    delete: key => dispatch(deleteActivity(key))
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

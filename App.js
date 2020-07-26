@@ -9,9 +9,9 @@ import { PersistGate } from "redux-persist/integration/react";
 export default function App() {
   return (
     <Provider store={configureStore}>
-      <PersistGate persistor={persistedStore} loading={null}>
-        <RootNavigator />
-      </PersistGate>
+      {/* <PersistGate persistor={persistedStore} loading={null}> */}
+      <RootNavigator />
+      {/* </PersistGate> */}
     </Provider>
   );
 }

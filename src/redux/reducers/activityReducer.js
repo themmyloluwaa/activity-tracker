@@ -1,11 +1,15 @@
 import { ADD_ACTIVITY, DELETE_ACTIVITY, EDIT_ACTIVITY } from "../actions/types";
-import {
-  addActivity,
-  deleteActivity,
-  editActivity
-} from "../actions/activityAction";
+
 const initialState = {
-  activities: []
+  activities: [
+    {
+      key: "skdlmdmdls",
+      title: "Testing Component",
+      description: "",
+      startDate: new Date(),
+      endDate: new Date()
+    }
+  ]
 };
 
 const activityReducer = (state = initialState, action) => {

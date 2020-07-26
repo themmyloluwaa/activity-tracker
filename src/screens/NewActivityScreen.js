@@ -3,7 +3,8 @@ import { View } from "react-native";
 import Layout from "../components/Layout";
 import HeadingComponent from "../components/HeadingComponent";
 import ActivityInputComponent from "../components/ActivityInputComponent";
-
+import { connect } from "react-redux";
+import { addActivity } from "../redux/actions/activityAction";
 const NewActivityScreen = ({ navigation }) => {
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -25,4 +26,14 @@ const NewActivityScreen = ({ navigation }) => {
   );
 };
 
-export default NewActivityScreen;
+const mapStateToProps = state => {
+  return {
+    activities: state.activitiesReducer.activities
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    add: data => dispatch(add(data))
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(NewActivityScreen);
