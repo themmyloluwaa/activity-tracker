@@ -28,7 +28,7 @@ const DATA = [
     title: "Third Item"
   }
 ];
-const CompletedComponent = () => {
+const CompletedComponent = ({ navigation }) => {
   console.log("completed");
   return (
     <FlatList
@@ -36,6 +36,7 @@ const CompletedComponent = () => {
       renderItem={({ item }) => (
         <ItemComponent
           title={item.title}
+          navigation={navigation}
           icon={{
             name: "check-circle",
             color: defaultAppStyle.primaryColor,

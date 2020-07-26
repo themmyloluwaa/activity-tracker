@@ -8,14 +8,14 @@ import ActiveComponent from "../components/ActiveComponent";
 import CompletedComponent from "../components/CompletedComponent";
 import SortComponent from "../components/SortComponent";
 
-const renderComponent = index => {
+const renderComponent = (index, navigation) => {
   if (index === 0) {
-    return <ActiveComponent />;
+    return <ActiveComponent navigation={navigation} />;
   } else {
-    return <CompletedComponent />;
+    return <CompletedComponent navigation={navigation} />;
   }
 };
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const [index, setIndex] = useState(0);
   //   const [counter, setCounter] = useState(0);
 
@@ -48,7 +48,7 @@ const HomeScreen = () => {
         }}
       />
       <SortComponent />
-      {renderComponent(index)}
+      {renderComponent(index, navigation)}
       {/* <Text
         style={{
           color: "#fff"

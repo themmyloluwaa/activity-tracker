@@ -10,15 +10,29 @@ import { Card, Button, Input } from "react-native-elements";
 import DateModalComponent from "../components/DateModalComponent";
 import { defaultAppStyle } from "../utils/appStyles";
 import { formateDate } from "../utils/dateFormatter";
-const ActivityInputComponent = ({ navigation }) => {
+const ActivityInputComponent = ({ navigation, ...props }) => {
   const [description, setDescription] = useState(
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    !!props.ediData === true
+      ? props.ediData.description
+      : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   );
-  const [startDate, setStartDate] = useState(new Date());
+  const [title, setTitle] = useState(
+    !!props.ediData === true ? props.ediData.title : "dkddkdk"
+  );
+  console.log(title);
+  const [startDate, setStartDate] = useState(
+    !!props.ediData === true ? new Date(props.ediData.startDate) : new Date()
+  );
   const [defaultDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [startTime, setStartTime] = useState(new Date());
-  const [endTime, setEndTime] = useState(new Date());
+  const [endDate, setEndDate] = useState(
+    !!props.ediData === true ? new Date(props.ediData.endDate) : new Date()
+  );
+  const [startTime, setStartTime] = useState(
+    !!props.ediData === true ? new Date(props.ediData.startTime) : new Date()
+  );
+  const [endTime, setEndTime] = useState(
+    !!props.ediData === true ? new Date(props.ediData.endTime) : new Date()
+  );
   const [showStartDate, setShowStartDate] = useState(false);
   const [showStartTime, setShowStartTime] = useState(false);
   const [showEndDate, setShowEndDate] = useState(false);
@@ -47,22 +61,41 @@ const ActivityInputComponent = ({ navigation }) => {
       }}
     >
       <Card containerStyle={styles.cardContainerStyle}>
-        <Text style={styles.cardTitleStyle}>Create a New Activity</Text>
+        <Text style={styles.cardTitleStyle}>
+          {props.edit ? "Edit This Activity" : "Create a New Activity"}
+        </Text>
         <View
           style={{
             marginTop: 10
           }}
         >
-          <Input label="Title" placeholder="50 Characters Maximum" />
+          <Input
+            label="Title"
+            placeholder="30 Characters Maximum"
+            defaultValue={title}
+            onChangeText={text => setTitle(text)}
+            maxLength={25}
+          />
 
-          <Text style={styles.descriptionLabelStyle}>Description: max</Text>
+          <Text style={styles.descriptionLabelStyle}>
+            Description{" "}
+            <Text
+              style={{
+                fontSize: 10,
+                marginHorizontal: 15
+              }}
+            >
+              {description.length}/250
+            </Text>
+          </Text>
           <View style={styles.descriptionInputContainerStyle}>
             <TextInput
               style={{ height: "100%" }}
               onChangeText={text => {
                 setDescription(text);
               }}
-              value={description}
+              maxLength={250}
+              defaultValue={description}
               placeholder="Start typing"
               multiline
               numberOfLines={4}
@@ -166,7 +199,7 @@ const ActivityInputComponent = ({ navigation }) => {
           </View>
         </View>
         <Button
-          title="Done"
+          title="DONE"
           buttonStyle={{
             backgroundColor: defaultAppStyle.secondaryColor,
             marginTop: 10
@@ -174,15 +207,18 @@ const ActivityInputComponent = ({ navigation }) => {
           // onPress={() => setModalVisible(false)}
         />
         <Button
-          title="Cancel"
+          title="CANCEL"
           type="outline"
           buttonStyle={{
-            backgroundColor: defaultAppStyle.whiteColor
+            backgroundColor: defaultAppStyle.whiteColor,
+            borderColor: defaultAppStyle.blackColor
           }}
           titleStyle={{
             color: defaultAppStyle.secondaryColor
           }}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() =>
+            props.cancel ? props.cancel() : navigation.navigate("Home")
+          }
           containerStyle={{
             marginVertical: 10
           }}

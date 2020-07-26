@@ -4,7 +4,7 @@ import { ButtonGroup, ListItem, Icon } from "react-native-elements";
 import genColors from "../utils/genColors";
 import { themeStyle, defaultAppStyle } from "../utils/appStyles";
 
-const ItemComponent = ({ title, icon }) => {
+const ItemComponent = ({ title, icon, navigation }) => {
   return (
     <ListItem
       containerStyle={{
@@ -14,7 +14,7 @@ const ItemComponent = ({ title, icon }) => {
         marginBottom: 15,
         maxWidth: defaultAppStyle.width - 32
       }}
-      //   onPress={() => console.log("ye")}
+      onPress={() => navigation.navigate("Preview", { data: title })}
       title={() => (
         <View
           style={{

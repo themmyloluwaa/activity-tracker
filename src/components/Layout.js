@@ -9,7 +9,6 @@ const Layout = props => {
         style={{
           backgroundColor: themeStyle.backgroundColor,
           flex: 1
-          // marginTop: StatusBar.currentHeight || 0
         }}
       >
         <View

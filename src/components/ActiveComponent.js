@@ -28,7 +28,7 @@ const DATA = [
     title: "Third Item"
   }
 ];
-const ActiveComponent = () => {
+const ActiveComponent = ({ navigation }) => {
   console.log("active");
   return (
     <FlatList
@@ -36,6 +36,7 @@ const ActiveComponent = () => {
       renderItem={({ item }) => (
         <ItemComponent
           title={item.title}
+          navigation={navigation}
           icon={{
             name: "delete",
             color: "red",
