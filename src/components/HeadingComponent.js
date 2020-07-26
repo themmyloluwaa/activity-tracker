@@ -30,4 +30,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default HeadingComponent;
+export default React.memo(HeadingComponent);

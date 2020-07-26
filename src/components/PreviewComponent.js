@@ -222,4 +222,4 @@ const PreviewComponent = () => {
   );
 };
 
-export default PreviewComponent;
+export default React.memo(PreviewComponent);

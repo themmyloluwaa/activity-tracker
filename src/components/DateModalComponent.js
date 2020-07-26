@@ -56,4 +56,4 @@ const DateModalComponent = props => {
   );
 };
 
-export default DateModalComponent;
+export default React.memo(DateModalComponent);

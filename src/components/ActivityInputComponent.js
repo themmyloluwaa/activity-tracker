@@ -4,6 +4,7 @@ import {
   Text,
   TextInput,
   StyleSheet,
+  ScrollView,
   TouchableWithoutFeedback
 } from "react-native";
 import { Card, Button, Input } from "react-native-elements";
@@ -55,7 +56,7 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
     }
   };
   return (
-    <View
+    <ScrollView
       style={{
         flex: 1
       }}
@@ -224,7 +225,7 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
           }}
         />
       </Card>
-    </View>
+    </ScrollView>
   );
 };
 

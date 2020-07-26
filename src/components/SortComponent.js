@@ -69,4 +69,4 @@ const SortComponent = () => {
   );
 };
 
-export default SortComponent;
+export default React.memo(SortComponent);

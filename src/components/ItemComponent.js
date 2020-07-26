@@ -58,4 +58,4 @@ const ItemComponent = ({ title, icon, navigation }) => {
   );
 };
 
-export default ItemComponent;
+export default React.memo(ItemComponent);
