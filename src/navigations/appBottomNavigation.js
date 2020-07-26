@@ -33,11 +33,10 @@ const createAppBottomNavigator = () => (
             type="antdesign"
             containerStyle={{
               backgroundColor: defaultAppStyle.secondaryColor,
-              borderRadius: 5,
+              borderRadius: 10,
               width: 35,
               height: 35
             }}
-            style={{}}
             color="#fff"
             size={30}
           />

@@ -1,27 +1,30 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { themeStyle, defaultAppStyle } from "../utils/appStyles";
 import Layout from "../components/Layout";
 import { ButtonGroup } from "react-native-elements";
+import HeadingComponent from "../components/HeadingComponent";
+import ActiveComponent from "../components/ActiveComponent";
+import CompletedComponent from "../components/CompletedComponent";
 
-const Active = () => <Text>Active</Text>;
-const Completed = () => <Text>Completed</Text>;
-
+const renderComponent = index => {
+  if (index === 0) {
+    return <ActiveComponent />;
+  } else {
+    return <CompletedComponent />;
+  }
+};
 const HomeScreen = () => {
   const [index, setIndex] = useState(0);
+  //   const [counter, setCounter] = useState(0);
 
   const buttons = ["Active", "Completed"];
   return (
     <Layout>
-      <View style={styles.headingContainer}>
-        <Text style={styles.headingPrimary}>Hello,</Text>
-        <Text style={styles.headingSecondary}>
-          Temiloluwa Ojo Philipiiddididi
-        </Text>
-      </View>
+      <HeadingComponent />
       <ButtonGroup
-        onPress={a => {
-          setIndex(a);
+        onPress={i => {
+          setIndex(i);
         }}
         selectedIndex={index}
         buttons={buttons}
@@ -43,25 +46,27 @@ const HomeScreen = () => {
           fontSize: 14
         }}
       />
+      {renderComponent(index)}
+      {/* <Text
+        style={{
+          color: "#fff"
+        }}
+      >
+        counter:{counter}
+      </Text>
+      <TouchableOpacity onPress={() => setCounter(counter + 1)}>
+        <Text
+          style={{
+            color: "#fff"
+          }}
+        >
+          Press me
+        </Text>
+      </TouchableOpacity> */}
     </Layout>
   );
 };
 
-const styles = StyleSheet.create({
-  headingContainer: {
-    maxWidth: defaultAppStyle.width,
-    marginVertical: 30
-  },
-  headingPrimary: {
-    color: defaultAppStyle.greyColor,
-    fontSize: 30,
-    paddingBottom: 10
-  },
-  headingSecondary: {
-    color: themeStyle.textColor,
-    fontSize: 30,
-    fontWeight: "bold"
-  }
-});
+const styles = StyleSheet.create({});
 
 export default HomeScreen;

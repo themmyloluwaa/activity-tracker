@@ -1,24 +1,27 @@
 import React from "react";
-import { View, StatusBar } from "react-native";
+import { View, SafeAreaView, StatusBar } from "react-native";
 import { defaultAppStyle, themeStyle } from "../utils/appStyles";
 const Layout = props => {
   return (
-    <View
-      style={{
-        backgroundColor: themeStyle.backgroundColor,
-        flex: 1,
-        paddingHorizontal: 32
-      }}
-    >
+    <>
       <StatusBar barStyle="light-content" />
-      <View
+      <SafeAreaView
         style={{
-          marginTop: defaultAppStyle.marginTop * 2
+          backgroundColor: themeStyle.backgroundColor,
+          flex: 1,
+          marginTop: StatusBar.currentHeight || 0
         }}
       >
-        {props.children}
-      </View>
-    </View>
+        <View
+          style={{
+            flex: 1,
+            paddingHorizontal: 32
+          }}
+        >
+          {props.children}
+        </View>
+      </SafeAreaView>
+    </>
   );
 };
 
