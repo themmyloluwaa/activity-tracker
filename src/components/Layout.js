@@ -8,15 +8,18 @@ const Layout = props => {
       <SafeAreaView
         style={{
           backgroundColor: themeStyle.backgroundColor,
-          flex: 1,
-          marginTop: StatusBar.currentHeight || 0
+          flex: 1
+          // marginTop: StatusBar.currentHeight || 0
         }}
       >
         <View
-          style={{
-            flex: 1,
-            paddingHorizontal: 32
-          }}
+          style={[
+            {
+              flex: 1,
+              paddingHorizontal: 32
+            },
+            props.style
+          ]}
         >
           {props.children}
         </View>

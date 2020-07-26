@@ -8,7 +8,6 @@ const SortComponent = () => {
   return (
     <View
       style={{
-        // backgroundColor: "yellow",
         marginVertical: 10,
         flexDirection: "row",
         justifyContent: "space-around"

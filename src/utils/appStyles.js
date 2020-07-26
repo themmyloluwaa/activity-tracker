@@ -11,7 +11,8 @@ const defaultAppStyle = {
   tertiaryColor: "#2ABEFD",
   greyColor: "#eee",
   width,
-  height
+  height,
+  greyish: "#F7F8FA"
 };
 
 const themeStyle = {

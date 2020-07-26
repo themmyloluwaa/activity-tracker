@@ -35,9 +35,9 @@ const HomeScreen = () => {
           backgroundColor: themeStyle.textColor
         }}
         selectedButtonStyle={{
-          backgroundColor: defaultAppStyle.primaryColor,
+          backgroundColor: defaultAppStyle.primaryColor
 
-          borderBottomWidth: defaultAppStyle.whiteColor
+          // borderBottomWidth: defaultAppStyle.whiteColor
         }}
         selectedTextStyle={{
           color: defaultAppStyle.whiteColor
