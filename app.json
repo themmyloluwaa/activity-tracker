@@ -1,0 +1,12 @@
+{
+  "name": "activityTracker",
+  "displayName": "activityTracker",
+  "expo": {
+    "name": "activityTracker",
+    "slug": "activityTracker",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
