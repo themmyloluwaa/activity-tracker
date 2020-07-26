@@ -6,6 +6,7 @@ import { ButtonGroup } from "react-native-elements";
 import HeadingComponent from "../components/HeadingComponent";
 import ActiveComponent from "../components/ActiveComponent";
 import CompletedComponent from "../components/CompletedComponent";
+import SortComponent from "../components/SortComponent";
 
 const renderComponent = index => {
   if (index === 0) {
@@ -46,6 +47,7 @@ const HomeScreen = () => {
           fontSize: 14
         }}
       />
+      <SortComponent />
       {renderComponent(index)}
       {/* <Text
         style={{
