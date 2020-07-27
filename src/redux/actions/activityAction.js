@@ -2,7 +2,9 @@ import {
   ADD_ACTIVITY,
   EDIT_ACTIVITY,
   DELETE_ACTIVITY,
-  GET_ACTIVITY
+  GET_ACTIVITY,
+  SORT_ASC,
+  SORT_DES
 } from "./types";
 export const addActivity = activity => {
   return {
@@ -26,4 +28,8 @@ export const deleteActivity = key => ({
 export const getActivity = key => ({
   type: GET_ACTIVITY,
   key
+});
+
+export const sortActivity = type => ({
+  type
 });
