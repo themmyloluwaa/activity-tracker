@@ -4,10 +4,13 @@ import Layout from "../components/Layout";
 import HeadingComponent from "../components/HeadingComponent";
 import { Card, Input, Button } from "react-native-elements";
 import { defaultAppStyle } from "../utils/appStyles";
-
-const SettingScreen = () => {
+import { connect } from "react-redux";
+import { setName } from "../redux/actions/settingsAction";
+const SettingScreen = props => {
   const [disabled, setDisable] = useState(true);
   const [isEnabled, setIsEnabled] = useState(false);
+  const [nameValue, setNameValue] = useState(props.name);
+
   const toggleSwitch = () =>
     !disabled && setIsEnabled(previousState => !previousState);
   return (
@@ -25,8 +28,9 @@ const SettingScreen = () => {
           }}
         >
           <Input
-            placeholder="BASIC INPUT"
-            value={"sksks"}
+            placeholder=""
+            defaultValue={nameValue}
+            onChangeText={text => setNameValue(text)}
             label="Display Name"
             labelStyle={{ paddingBottom: 10 }}
             containerStyle={{
@@ -55,8 +59,19 @@ const SettingScreen = () => {
           containerStyle={{
             marginTop: 30
           }}
+          onPress={() => {
+            if (disabled) {
+              setDisable(false);
+            } else {
+              console.log("valled");
+              props.setName(nameValue);
+              setDisable(true);
+            }
+          }}
           buttonStyle={{
-            backgroundColor: defaultAppStyle.secondaryColor,
+            backgroundColor: disabled
+              ? defaultAppStyle.secondaryColor
+              : "green",
             borderRadius: 10
           }}
         />
@@ -78,4 +93,15 @@ const styles = StyleSheet.create({
     paddingBottom: 10
   }
 });
-export default SettingScreen;
+
+const mapStateToProps = state => {
+  return {
+    name: state.settingsReducer.name
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    setName: name => dispatch(setName(name))
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(SettingScreen);

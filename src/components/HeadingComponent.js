@@ -1,13 +1,16 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { defaultAppStyle, themeStyle } from "../utils/appStyles";
+import { connect } from "react-redux";
 
-const HeadingComponent = () => {
+const HeadingComponent = props => {
   return (
     <View style={styles.headingContainer}>
-      <Text style={styles.headingPrimary}>Hello,</Text>
+      {props.name.length === 0 && (
+        <Text style={styles.headingPrimary}>Hello,</Text>
+      )}
       <Text style={styles.headingSecondary}>
-        Temiloluwa Ojo Philipiiddididi
+        {props.name.length === 0 ? "There" : `${props.name}'s Activities`}
       </Text>
     </View>
   );
@@ -30,4 +33,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default React.memo(HeadingComponent);
+const mapStateToProps = state => {
+  return {
+    name: state.settingsReducer.name
+  };
+};
+
+export default connect(mapStateToProps, null)(React.memo(HeadingComponent));

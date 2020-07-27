@@ -5,10 +5,7 @@ import {
   SORT_ASC,
   SORT_DES
 } from "../actions/types";
-
-const initialState = {
-  activities: []
-};
+import initialState from "../initialState";
 
 const activityReducer = (state = initialState, action) => {
   switch (action.type) {

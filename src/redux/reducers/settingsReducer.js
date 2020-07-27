@@ -1,18 +1,16 @@
 import { SET_DISPLAY_NAME } from "../actions/types";
-
-const initialState = {
-  name: "",
-  darkMode: false
-};
+import initialState from "../initialState";
 
 const activityReducer = (state = initialState, action) => {
-  if (action.type === SET_DISPLAY_NAME) {
-    return {
-      ...state,
-      name: action.name
-    };
-  } else {
-    return state;
+  switch (action.type) {
+    case SET_DISPLAY_NAME:
+      console.log(action.name);
+      return {
+        ...state,
+        name: action.name
+      };
+    default:
+      return { ...state };
   }
 };
 
