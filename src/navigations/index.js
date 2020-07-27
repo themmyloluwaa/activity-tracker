@@ -5,7 +5,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import createAppBottomNavigator from "./appBottomNavigation";
 
 import PreviewScreen from "../screens/PreviewScreen";
-import EditSettings from "../screens/EditSettingScreen";
 const AppStackNavigator = createStackNavigator();
 
 const WrapperNavigator = () => (
@@ -17,7 +16,6 @@ const WrapperNavigator = () => (
   >
     <AppStackNavigator.Screen component={createAppBottomNavigator} name="App" />
     <AppStackNavigator.Screen component={PreviewScreen} name="Preview" />
-    <AppStackNavigator.Screen component={EditSettings} name="EditSetting" />
   </AppStackNavigator.Navigator>
 );
 
