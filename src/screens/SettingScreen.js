@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Switch } from "react-native";
+import { View, Text, Switch, StyleSheet } from "react-native";
 import Layout from "../components/Layout";
 import HeadingComponent from "../components/HeadingComponent";
 import { Card, Input, Button } from "react-native-elements";
@@ -18,16 +18,7 @@ const SettingScreen = () => {
     >
       <HeadingComponent />
 
-      <Card
-        containerStyle={{
-          padding: 0,
-          maxWidth: defaultAppStyle.width,
-          margin: 0,
-          backgroundColor: defaultAppStyle.greyish,
-          minHeight: 300,
-          paddingHorizontal: 16
-        }}
-      >
+      <Card containerStyle={styles.cardContainer}>
         <View
           style={{
             marginTop: 10
@@ -49,14 +40,7 @@ const SettingScreen = () => {
             marginTop: 10
           }}
         >
-          <Text
-            style={{
-              fontSize: 16,
-              paddingBottom: 10
-            }}
-          >
-            Dark Mode
-          </Text>
+          <Text style={styles.switchLabelStyle}>Dark Mode</Text>
           <Switch
             trackColor={{ false: "#767577", true: "#81b0ff" }}
             thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
@@ -80,5 +64,18 @@ const SettingScreen = () => {
     </Layout>
   );
 };
-
+const styles = StyleSheet.create({
+  cardContainer: {
+    padding: 0,
+    maxWidth: defaultAppStyle.width,
+    margin: 0,
+    backgroundColor: defaultAppStyle.greyish,
+    minHeight: 300,
+    paddingHorizontal: 16
+  },
+  switchLabelStyle: {
+    fontSize: 16,
+    paddingBottom: 10
+  }
+});
 export default SettingScreen;
