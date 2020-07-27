@@ -31,7 +31,7 @@ const ItemComponent = ({ item, icon, navigation }) => {
           >
             {item.title}
           </Text>
-          <Icon name="dot-single" type="entypo" color={genColors()} size={30} />
+          <Icon name="dot-single" type="entypo" color={item.color} size={30} />
         </View>
       }
       titleStyle={{

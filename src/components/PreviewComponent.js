@@ -5,13 +5,30 @@ import { Icon, Divider, Button, Overlay } from "react-native-elements";
 import ActivityInputComponent from "./ActivityInputComponent";
 import { defaultAppStyle } from "../utils/appStyles";
 import { formateDate } from "../utils/dateFormatter";
+import { RESET_ACTIVITY } from "../redux/actions/types";
 
 const PreviewComponent = props => {
   const [overLayVisible, setOverLayVisible] = useState(false);
   const [data, setData] = useState(props.activity);
+
   useEffect(() => {
-    props.find(props.route.params.key);
-  }, [props.route]);
+    const unsubscribe = props.navigation.addListener("focus", () => {
+      console.log("entering");
+      props.find(props.route.params.key);
+    });
+
+    return unsubscribe;
+  }, [props.navigation, props.route]);
+
+  useEffect(() => {
+    const unsubscribe = props.navigation.addListener("blur", () => {
+      console.log("leaving");
+      // props.reset(RESET_ACTIVITY);
+      setData({});
+    });
+
+    return unsubscribe;
+  }, [props.navigation, props.route]);
   return (
     <>
       <ScrollView>
@@ -175,7 +192,11 @@ const PreviewComponent = props => {
           Alert.alert("Delete Alert", "Are you sure you want to delete", [
             {
               text: "Yes",
-              onPress: () => console.log("yes")
+              onPress: () => {
+                props.delete(data.key);
+                props.reset(RESET_ACTIVITY);
+                props.navigation.goBack();
+              }
             },
             {
               text: "No",

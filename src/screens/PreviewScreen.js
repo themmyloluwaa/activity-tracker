@@ -9,7 +9,8 @@ import { connect } from "react-redux";
 import {
   editActivity,
   deleteActivity,
-  getActivity
+  getActivity,
+  resetActivity
 } from "../redux/actions/activityAction";
 const PreviewScreen = props => {
   return (
@@ -43,7 +44,8 @@ const mapDispatchToProps = dispatch => {
   return {
     delete: key => dispatch(deleteActivity(key)),
     edit: data => dispatch(editActivity(data)),
-    find: key => dispatch(getActivity(key))
+    find: key => dispatch(getActivity(key)),
+    reset: type => dispatch(resetActivity(type))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(PreviewScreen);

@@ -4,7 +4,8 @@ import {
   EDIT_ACTIVITY,
   GET_ACTIVITY,
   SORT_ASC,
-  SORT_DES
+  SORT_DES,
+  RESET_ACTIVITY
 } from "../actions/types";
 
 const initialState = {
@@ -40,7 +41,8 @@ const activityReducer = (state = initialState, action) => {
               new Date(a.startTime).getTime() + new Date(a.endTime).getTime();
             const totalTimeB =
               new Date(b.startTime).getTime() + new Date(b.endTime).getTime();
-            return totalTimeB - totalTimeA;
+
+            return new Date(b.createdAt) - new Date(a.createdAt);
           })
         ]
       };
@@ -53,7 +55,8 @@ const activityReducer = (state = initialState, action) => {
               new Date(a.startTime).getTime() + new Date(a.endTime).getTime();
             const totalTimeB =
               new Date(b.startTime).getTime() + new Date(b.endTime).getTime();
-            return totalTimeA - totalTimeB;
+
+            return new Date(a.createdAt) - new Date(b.createdAt);
           })
         ]
       };
@@ -63,6 +66,13 @@ const activityReducer = (state = initialState, action) => {
         activity: state.activities.find(
           activityValue => activityValue.key === action.key
         )
+      };
+    }
+
+    case RESET_ACTIVITY: {
+      return {
+        ...state,
+        activity: {}
       };
     }
 

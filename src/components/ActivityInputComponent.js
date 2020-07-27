@@ -39,19 +39,6 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
   useEffect(() => {
-    console.log(
-      isDateEqual(
-        [
-          startTime.getTime(),
-          endTime.getTime(),
-          endDate.getTime(),
-          startDate.getTime()
-        ],
-        defaultDate.getTime()
-      ),
-      "ddd"
-    );
-
     setButtonEnable();
   }, [
     title,
@@ -74,12 +61,7 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
   };
   const setButtonEnable = () => {
     const dateEqualityCheck = isDateEqual(
-      [
-        startTime.getTime(),
-        endTime.getTime(),
-        endDate.getTime(),
-        startDate.getTime()
-      ],
+      [startTime.getTime(), endTime.getTime(), endDate.getTime()],
       defaultDate.getTime()
     );
     if (title.length === 0 || description.length === 0 || dateEqualityCheck) {
@@ -197,9 +179,7 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
                 >
                   <View style={styles.dateContainer}>
                     <Text style={styles.textStyle}>
-                      {startDate.getTime() > defaultDate.getTime()
-                        ? formateDate(startDate)
-                        : "Start Date"}
+                      {formateDate(startDate)}
                     </Text>
                   </View>
                 </TouchableWithoutFeedback>
@@ -216,7 +196,7 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
                 </TouchableWithoutFeedback>
               </View>
               <DateModalComponent
-                minimumDate={startDate}
+                minimumDate={defaultDate}
                 onChange={DateOnChange}
                 mode="date"
                 value={startDate}
