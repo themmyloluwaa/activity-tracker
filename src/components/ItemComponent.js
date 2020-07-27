@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text } from "react-native";
-import { ButtonGroup, ListItem, Icon } from "react-native-elements";
-import genColors from "../utils/genColors";
+import {  ListItem, Icon } from "react-native-elements";
 import { themeStyle, defaultAppStyle } from "../utils/appStyles";
 import { formateDate } from "../utils/dateFormatter";
 

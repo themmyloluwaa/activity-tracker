@@ -17,7 +17,6 @@ const NewActivityScreen = ({ navigation, ...props }) => {
       </View>
       <ActivityInputComponent
         navigation={navigation}
-        // custom onclick handler passed as props for the activity input component
         handleClick={data => {
           props.add(data);
           navigation.navigate("Home");

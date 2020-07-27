@@ -227,7 +227,7 @@ const PreviewComponent = props => {
           }}
         >
           <ActivityInputComponent
-            edit={true}
+           
             cancel={() => setOverLayVisible(false)}
             editData={data}
             handleClick={editData => {
