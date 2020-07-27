@@ -9,7 +9,7 @@ export const addActivity = activity => {
   return {
     type: ADD_ACTIVITY,
     data: {
-      key: `${new Date().getTime()}- ${activity.startDate.getTime()}-${activity.endDate.getMilliseconds()}`,
+      key: `${new Date().getTime()}-${activity.startDate.getTime()}-${activity.endDate.getMilliseconds()}`,
       ...activity,
       createdAt: new Date(),
       color: genColors()
@@ -26,15 +26,8 @@ export const deleteActivity = key => ({
   key
 });
 
-export const getActivity = key => ({
-  type: GET_ACTIVITY,
-  key
-});
 
 export const sortActivity = type => ({
   type
 });
 
-export const resetActivity = type => ({
-  type
-});
