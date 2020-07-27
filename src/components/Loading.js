@@ -6,7 +6,7 @@ import {
   ActivityIndicator
 } from "react-native";
 
-const source = require("./background.jpg");
+const source = require("../images/background.jpg");
 export default class Loading extends PureComponent {
   render() {
     return (

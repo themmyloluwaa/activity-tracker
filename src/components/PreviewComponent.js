@@ -51,7 +51,15 @@ const PreviewComponent = props => {
         <Text style={styles.textStyle}>{data.title}</Text>
 
         <View style={styles.descriptionContainer}>
-          <Text style={{ fontStyle: "italic", opacity: 0.7 }}>
+          <Text
+            style={{
+              fontWeight: "900",
+              fontStyle: "italic",
+              fontSize: 15,
+              lineHeight: 24,
+              color: defaultAppStyle.whiteColor
+            }}
+          >
             {data.description}
           </Text>
         </View>
@@ -69,10 +77,10 @@ const PreviewComponent = props => {
               }}
             />
             <View>
-              <Text style={{ fontWeight: "bold" }}>
+              <Text style={{ fontWeight: "bold", color: "#fff" }}>
                 {formateDate(data.startDate)}
               </Text>
-              <Text style={{ color: "grey" }}>Start Date</Text>
+              <Text style={{ color: "#fff" }}>Start Date</Text>
             </View>
           </View>
           <View style={styles.innerDateContainer}>
@@ -85,10 +93,10 @@ const PreviewComponent = props => {
               }}
             />
             <View>
-              <Text style={{ fontWeight: "bold" }}>
+              <Text style={{ fontWeight: "bold", color: "#fff" }}>
                 {formateDate(data.startTime, "en", "time")}
               </Text>
-              <Text style={{ color: "grey" }}>Start Time</Text>
+              <Text style={{ color: "#fff" }}>Start Time</Text>
             </View>
           </View>
         </View>
@@ -110,10 +118,10 @@ const PreviewComponent = props => {
               }}
             />
             <View>
-              <Text style={{ fontWeight: "bold" }}>
+              <Text style={{ fontWeight: "bold", color: "#fff" }}>
                 {formateDate(data.endDate)}
               </Text>
-              <Text style={{ color: "grey" }}>End Date</Text>
+              <Text style={{ color: "#fff" }}>End Date</Text>
             </View>
           </View>
 
@@ -127,11 +135,11 @@ const PreviewComponent = props => {
               }}
             />
             <View>
-              <Text style={{ fontWeight: "bold" }}>
+              <Text style={{ fontWeight: "bold", color: "#fff" }}>
                 {" "}
                 {formateDate(data.endTime, "en", "time")}
               </Text>
-              <Text style={{ color: "grey" }}>End Time</Text>
+              <Text style={{ color: "#fff" }}>End Time</Text>
             </View>
           </View>
         </View>
@@ -157,7 +165,8 @@ const PreviewComponent = props => {
               marginVertical: 10
             }}
             buttonStyle={{
-              borderColor: defaultAppStyle.blackColor
+              borderColor: defaultAppStyle.blackColor,
+              backgroundColor: "#fff"
             }}
             titleStyle={{
               color: "red"
@@ -200,7 +209,7 @@ const styles = StyleSheet.create({
   textStyle: {
     fontSize: 30,
     fontWeight: "bold",
-    opacity: 0.7
+    color: defaultAppStyle.whiteColor
   },
   dividerStyle: {
     backgroundColor: defaultAppStyle.secondaryColor,
@@ -211,7 +220,10 @@ const styles = StyleSheet.create({
   descriptionContainer: {
     minHeight: 50,
     maxHeight: 400,
-    marginVertical: 20
+    marginVertical: 20,
+    backgroundColor: "#000",
+    padding: 10,
+    opacity: 0.76
   },
   dateContainer: {
     flexDirection: "row",
