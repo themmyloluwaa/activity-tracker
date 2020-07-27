@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { View } from "react-native";
 import Layout from "../components/Layout";
 import HeadingComponent from "../components/HeadingComponent";
@@ -6,12 +6,6 @@ import ActivityInputComponent from "../components/ActivityInputComponent";
 import { connect } from "react-redux";
 import { addActivity } from "../redux/actions/activityAction";
 const NewActivityScreen = ({ navigation, ...props }) => {
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    // setShow(Platform.OS === 'ios');
-    console.log(selectedDate);
-    setDate(currentDate);
-  };
   return (
     <Layout
       style={{
@@ -23,6 +17,7 @@ const NewActivityScreen = ({ navigation, ...props }) => {
       </View>
       <ActivityInputComponent
         navigation={navigation}
+        // custom onclick handler passed as props for the activity input component
         handleClick={data => {
           props.add(data);
           navigation.navigate("Home");
