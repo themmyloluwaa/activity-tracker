@@ -21,7 +21,16 @@ const createAppBottomNavigator = () => (
     <BottomNavigator.Screen
       name="Home"
       options={{
-        tabBarIcon: () => <Icon name="home" size={30} color="#fff" />
+        tabBarIcon: () => (
+          <Icon
+            name="home"
+            containerStyle={{
+              marginRight: -5
+            }}
+            size={30}
+            color="#fff"
+          />
+        )
       }}
       component={HomeScreen}
     />
