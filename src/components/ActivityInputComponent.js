@@ -13,8 +13,10 @@ import DateModalComponent from "../components/DateModalComponent";
 import { defaultAppStyle } from "../utils/appStyles";
 import { formateDate, isDateEqual } from "../utils/dateFormatter";
 const ActivityInputComponent = ({ navigation, ...props }) => {
+  // console.log(props.hasOwnProperty("editData"));
   const [description, setDescription] = useState(
     !!props.ediData === true ? props.ediData.description : ""
+    // props.editData.description
   );
   const [title, setTitle] = useState(
     !!props.ediData === true ? props.ediData.title : ""
@@ -48,6 +50,23 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
     showEndDate,
     showEndTime
   ]);
+
+  useEffect(() => {
+    if (
+      props.hasOwnProperty("editData") &&
+      props.editData !== undefined &&
+      props.editData.title !== undefined
+    ) {
+      console.log(props.editData.startTime);
+
+      setDescription(props.editData.description);
+      setTitle(props.editData.title);
+      setStartDate(new Date(props.editData.startDate));
+      setEndDate(new Date(props.editData.endDate));
+      setStartTime(new Date(props.editData.startTime));
+      setEndTime(new Date(props.editData.endTime));
+    }
+  }, [props.editData]);
 
   const resetInputs = () => {
     setTitle("");
@@ -250,7 +269,7 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
                 modal={[showEndDate, setShowEndDate, false]}
               />
               <DateModalComponent
-                minimumDate={endDate}
+                minimumDate={endTime}
                 onChange={TimeOnChange}
                 mode="time"
                 value={endTime}

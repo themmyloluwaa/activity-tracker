@@ -22,7 +22,7 @@ const PreviewComponent = props => {
     });
 
     return unsubscribe;
-  }, [props.navigation, props.route]);
+  }, [props.navigation, props.route, props.activities]);
 
   useEffect(() => {
     const unsubscribe = props.navigation.addListener("blur", () => {
@@ -32,7 +32,7 @@ const PreviewComponent = props => {
     });
 
     return unsubscribe;
-  }, [props.navigation, props.route]);
+  }, [props.navigation, props.route, props.activities]);
   return (
     <>
       <ScrollView>
@@ -225,6 +225,13 @@ const PreviewComponent = props => {
           <ActivityInputComponent
             edit={true}
             cancel={() => setOverLayVisible(false)}
+            editData={data}
+            handleClick={editData => {
+              const dataToEdit = { ...data, ...editData };
+              props.edit(dataToEdit);
+              setData(dataToEdit);
+              setOverLayVisible(false);
+            }}
           />
         </View>
       </Overlay>

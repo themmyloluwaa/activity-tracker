@@ -26,10 +26,19 @@ const activityReducer = (state = initialState, action) => {
         activities: state.activities.filter(data => data.key !== action.key)
       };
     case EDIT_ACTIVITY:
+      // const newArray = state.activities.filter(data => {
+      //   console.log(data.key === action.data.key);
+
+      //   return data.key === action.data.key;
+      // });
+      // console.log("wahh", newArray);
+      // console.log("wahh", newArray);
       return {
         ...state,
         activities: state.activities
-          .filter(data => data.key !== action.data.key)
+          .filter(data => {
+            return data.key !== action.data.key;
+          })
           .concat({ ...action.data })
       };
     case SORT_ASC:
