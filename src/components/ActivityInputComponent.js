@@ -134,8 +134,19 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
           }}
         >
           <Input
-            label="Title"
-            placeholder="30 Characters Maximum"
+            label={
+              <Text style={styles.descriptionLabelStyle}>
+                Title{" "}
+                <Text
+                  style={{
+                    fontSize: 10
+                  }}
+                >
+                  {title.length}/25
+                </Text>
+              </Text>
+            }
+            // placeholder="30 Characters Maximum"
             defaultValue={title}
             onChangeText={text => {
               setTitle(text);
@@ -162,7 +173,7 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
               }}
               maxLength={250}
               defaultValue={description}
-              placeholder="Start typing"
+              // placeholder="Start typing"
               multiline
               numberOfLines={4}
             />
