@@ -57,7 +57,6 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
       props.editData !== undefined &&
       props.editData.title !== undefined
     ) {
-      console.log(props.editData.startTime);
 
       setDescription(props.editData.description);
       setTitle(props.editData.title);
@@ -269,7 +268,7 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
                 modal={[showEndDate, setShowEndDate, false]}
               />
               <DateModalComponent
-                minimumDate={endTime}
+                minimumDate={new Date()}
                 onChange={TimeOnChange}
                 mode="time"
                 value={endTime}

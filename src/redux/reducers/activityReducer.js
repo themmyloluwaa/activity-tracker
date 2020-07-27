@@ -9,8 +9,7 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  activities: [],
-  activity: {}
+  activities: []
 };
 
 const activityReducer = (state = initialState, action) => {
@@ -26,20 +25,14 @@ const activityReducer = (state = initialState, action) => {
         activities: state.activities.filter(data => data.key !== action.key)
       };
     case EDIT_ACTIVITY:
-      // const newArray = state.activities.filter(data => {
-      //   console.log(data.key === action.data.key);
-
-      //   return data.key === action.data.key;
-      // });
-      // console.log("wahh", newArray);
-      // console.log("wahh", newArray);
+      const newArray = [...state.activities];
+      const letIndex = newArray.findIndex(
+        activity => activity.key === action.data.key
+      );
+      newArray.splice(letIndex, 1, action.data);
       return {
         ...state,
-        activities: state.activities
-          .filter(data => {
-            return data.key !== action.data.key;
-          })
-          .concat({ ...action.data })
+        activities: [...newArray]
       };
     case SORT_ASC:
       return {
