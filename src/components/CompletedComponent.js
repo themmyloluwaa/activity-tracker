@@ -2,6 +2,8 @@ import React from "react";
 import { FlatList, Text } from "react-native";
 import ItemComponent from "./ItemComponent";
 import { themeStyle, defaultAppStyle } from "../utils/appStyles";
+import { connect } from "react-redux";
+
 const DATA = [
   {
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
@@ -28,19 +30,20 @@ const DATA = [
     title: "Third Item"
   }
 ];
-const CompletedComponent = ({ navigation }) => {
+const CompletedComponent = ({ navigation, ...props }) => {
   console.log("completed");
   return (
     <FlatList
-      data={DATA}
+      data={props.completed}
+      extraData={props.completed}
       renderItem={({ item }) => (
         <ItemComponent
-          title={item.title}
+          title={item}
           navigation={navigation}
           icon={{
             name: "check-circle",
             color: defaultAppStyle.primaryColor,
-            onPress: () => console.log("completed")
+            onPress: () => null
           }}
         />
       )}
@@ -61,4 +64,12 @@ const CompletedComponent = ({ navigation }) => {
   );
 };
 
-export default React.memo(CompletedComponent);
+const mapStateToProps = state => {
+  return {
+    completed: state.activitiesReducer.activities.filter(
+      activity => new Date() > new Date(activity.endDate)
+    )
+  };
+};
+
+export default connect(mapStateToProps, null)(React.memo(CompletedComponent));
