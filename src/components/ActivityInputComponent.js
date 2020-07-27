@@ -20,7 +20,6 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
   const [title, setTitle] = useState(
     !!props.ediData === true ? props.ediData.title : "dkddkdk"
   );
-  console.log(title);
   const [startDate, setStartDate] = useState(
     !!props.ediData === true ? new Date(props.ediData.startDate) : new Date()
   );
@@ -54,6 +53,21 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
     } else {
       setEndTime(time);
     }
+  };
+
+  const handleSubmit = () => {
+    console.log("yes");
+    const dataToSubmit = {
+      title,
+      description,
+      startDate,
+      startTime,
+      endDate,
+      endTime
+    };
+
+    props.handleClick(dataToSubmit);
+    navigation.navigate("Home");
   };
   return (
     <ScrollView
@@ -205,7 +219,7 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
             backgroundColor: defaultAppStyle.secondaryColor,
             marginTop: 10
           }}
-          // onPress={() => setModalVisible(false)}
+          onPress={() => handleSubmit()}
         />
         <Button
           title="CANCEL"

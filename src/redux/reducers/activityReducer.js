@@ -7,7 +7,9 @@ const initialState = {
       title: "Testing Component",
       description: "",
       startDate: new Date(),
-      endDate: new Date()
+      endDate: new Date(),
+      startTime: new Date(),
+      endTime: new Date()
     }
   ]
 };
@@ -33,7 +35,7 @@ const activityReducer = (state = initialState, action) => {
       };
 
     default:
-      return state;
+      return { ...state };
   }
 };
 

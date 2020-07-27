@@ -5,7 +5,7 @@ import HeadingComponent from "../components/HeadingComponent";
 import ActivityInputComponent from "../components/ActivityInputComponent";
 import { connect } from "react-redux";
 import { addActivity } from "../redux/actions/activityAction";
-const NewActivityScreen = ({ navigation }) => {
+const NewActivityScreen = ({ navigation, ...props }) => {
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     // setShow(Platform.OS === 'ios');
@@ -21,7 +21,10 @@ const NewActivityScreen = ({ navigation }) => {
       <View style={{ paddingHorizontal: 32 }}>
         <HeadingComponent />
       </View>
-      <ActivityInputComponent navigation={navigation} />
+      <ActivityInputComponent
+        navigation={navigation}
+        handleClick={data => props.add(data)}
+      />
     </Layout>
   );
 };
@@ -33,7 +36,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    add: data => dispatch(add(data))
+    add: data => dispatch(addActivity(data))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(NewActivityScreen);

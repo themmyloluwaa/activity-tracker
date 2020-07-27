@@ -48,11 +48,18 @@ const ItemComponent = ({ item, icon, navigation }) => {
             size={15}
             style={{ paddingRight: 10, fontWeight: "bold" }}
           />
-          <Text>{formateDate(item.startTime, "en", "time")} - {formateDate(item.startTime, "en", "time")}</Text>
+          <Text>
+            {formateDate(item.startTime, "en", "time")} -{" "}
+            {formateDate(item.startTime, "en", "time")}
+          </Text>
         </View>
       )}
       rightElement={() => (
-        <Icon name={icon.name} color={icon.color} onPress={icon.onPress} />
+        <Icon
+          name={icon.name}
+          color={icon.color}
+          onPress={() => icon.onPress(item.key)}
+        />
       )}
     />
   );

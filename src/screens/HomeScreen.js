@@ -7,18 +7,15 @@ import HeadingComponent from "../components/HeadingComponent";
 import ActiveComponent from "../components/ActiveComponent";
 import CompletedComponent from "../components/CompletedComponent";
 import SortComponent from "../components/SortComponent";
-import { connect } from "react-redux";
-import { deleteActivity } from "../redux/actions/activityAction";
 
-const renderComponent = (index, navigation, data) => {
+const renderComponent = (index, navigation) => {
   if (index === 0) {
-    return <ActiveComponent navigation={navigation} data={data.activities} />;
+    return <ActiveComponent navigation={navigation} />;
   } else {
-    return <CompletedComponent navigation={navigation} data={data.completed} />;
+    return <CompletedComponent navigation={navigation} />;
   }
 };
 const HomeScreen = ({ navigation, ...props }) => {
-  console.log(props.data.activities.length);
   const [index, setIndex] = useState(0);
   //   const [counter, setCounter] = useState(0);
 
@@ -51,7 +48,7 @@ const HomeScreen = ({ navigation, ...props }) => {
         }}
       />
       <SortComponent />
-      {renderComponent(index, navigation, props.data)}
+      {renderComponent(index, navigation)}
       {/* <Text
         style={{
           color: "#fff"
@@ -72,17 +69,17 @@ const HomeScreen = ({ navigation, ...props }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    data: {
-      activities: state.activitiesReducer.activities,
-      completed: state.activitiesReducer.activities
-    }
-  };
-};
-const mapDispatchToProps = dispatch => {
-  return {
-    delete: key => dispatch(deleteActivity(key))
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+// const mapStateToProps = state => {
+//   return {
+//     data: {
+//       activities: state.activitiesReducer.activities,
+//       completed: state.activitiesReducer.activities
+//     }
+//   };
+// };
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     delete: key => dispatch(deleteActivity(key))
+//   };
+// };
+export default HomeScreen;

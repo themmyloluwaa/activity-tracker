@@ -2,6 +2,8 @@ import React from "react";
 import { FlatList, Text } from "react-native";
 import ItemComponent from "./ItemComponent";
 import { themeStyle, defaultAppStyle } from "../utils/appStyles";
+import { connect } from "react-redux";
+import { deleteActivity } from "../redux/actions/activityAction";
 const DATA = [
   {
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
@@ -29,10 +31,10 @@ const DATA = [
   }
 ];
 const ActiveComponent = ({ navigation, ...props }) => {
-  console.log("active");
   return (
     <FlatList
-      data={props.data}
+      data={props.activities}
+      extraData={props.activities}
       renderItem={({ item }) => (
         <ItemComponent
           item={item}
@@ -40,7 +42,7 @@ const ActiveComponent = ({ navigation, ...props }) => {
           icon={{
             name: "delete",
             color: "red",
-            onPress: () => console.log("active")
+            onPress: key => props.delete(key)
           }}
         />
       )}
@@ -61,4 +63,18 @@ const ActiveComponent = ({ navigation, ...props }) => {
   );
 };
 
-export default React.memo(ActiveComponent);
+const mapStateToProps = state => {
+  return {
+    activities: state.activitiesReducer.activities
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    delete: key => dispatch(deleteActivity(key))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(React.memo(ActiveComponent));
