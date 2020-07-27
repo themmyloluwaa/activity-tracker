@@ -36,7 +36,7 @@ const PreviewScreen = props => {
 
 const mapStateToProps = state => {
   return {
-    activity: state.activitiesReducer.activities
+    activity: state.activitiesReducer.activity
   };
 };
 const mapDispatchToProps = dispatch => {

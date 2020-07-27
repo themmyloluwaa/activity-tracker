@@ -2,9 +2,7 @@ import {
   ADD_ACTIVITY,
   EDIT_ACTIVITY,
   DELETE_ACTIVITY,
-  GET_ACTIVITY,
-  SORT_ASC,
-  SORT_DES
+  GET_ACTIVITY
 } from "./types";
 export const addActivity = activity => {
   return {

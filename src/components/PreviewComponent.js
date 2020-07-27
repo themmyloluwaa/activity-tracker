@@ -4,13 +4,13 @@ import { View, Text, ScrollView, Alert } from "react-native";
 import { Icon, Divider, Button, Overlay } from "react-native-elements";
 import ActivityInputComponent from "./ActivityInputComponent";
 import { defaultAppStyle } from "../utils/appStyles";
+import { formateDate } from "../utils/dateFormatter";
 
 const PreviewComponent = props => {
   const [overLayVisible, setOverLayVisible] = useState(false);
   const [data, setData] = useState(props.activity);
-console.log(data)
   useEffect(() => {
-    // props.find(props.route.params.key);
+    props.find(props.route.params.key);
   }, [props.route]);
   return (
     <>
@@ -22,19 +22,19 @@ console.log(data)
             opacity: 0.7
           }}
         >
-          {/* {route.params.data.title} */}
+          {data.title}
         </Text>
 
         <View
           style={{
-            minHeight: 200,
+            minHeight: 50,
             maxHeight: 400,
             marginVertical: 20
           }}
         >
           {/* <Text style={{ fontSize: 20, paddingBottom: 10 }}>Description</Text> */}
           <Text style={{ fontStyle: "italic", opacity: 0.7 }}>
-            {/* {route.params.data.description} */}
+            {data.description}
           </Text>
         </View>
         <Divider
@@ -67,7 +67,9 @@ console.log(data)
               }}
             />
             <View>
-              <Text style={{ fontWeight: "bold" }}>22/10/2020</Text>
+              <Text style={{ fontWeight: "bold" }}>
+                {formateDate(data.startDate)}
+              </Text>
               <Text style={{ color: "grey" }}>Start Date</Text>
             </View>
           </View>
@@ -86,7 +88,9 @@ console.log(data)
               }}
             />
             <View>
-              <Text style={{ fontWeight: "bold" }}>22/10/2020</Text>
+              <Text style={{ fontWeight: "bold" }}>
+                {formateDate(data.startTime, "en", "time")}
+              </Text>
               <Text style={{ color: "grey" }}>Start Time</Text>
             </View>
           </View>
@@ -113,7 +117,9 @@ console.log(data)
               }}
             />
             <View>
-              <Text style={{ fontWeight: "bold" }}>22/10/2020</Text>
+              <Text style={{ fontWeight: "bold" }}>
+                {formateDate(data.endDate)}
+              </Text>
               <Text style={{ color: "grey" }}>End Date</Text>
             </View>
           </View>
@@ -132,7 +138,10 @@ console.log(data)
               }}
             />
             <View>
-              <Text style={{ fontWeight: "bold" }}>22/10/2020</Text>
+              <Text style={{ fontWeight: "bold" }}>
+                {" "}
+                {formateDate(data.endTime, "en", "time")}
+              </Text>
               <Text style={{ color: "grey" }}>End Time</Text>
             </View>
           </View>

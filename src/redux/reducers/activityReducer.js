@@ -8,7 +8,8 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  activities: []
+  activities: [],
+  activity: {}
 };
 
 const activityReducer = (state = initialState, action) => {
@@ -56,6 +57,14 @@ const activityReducer = (state = initialState, action) => {
           })
         ]
       };
+    case GET_ACTIVITY: {
+      return {
+        ...state,
+        activity: state.activities.find(
+          activityValue => activityValue.key === action.key
+        )
+      };
+    }
 
     default:
       return { ...state };
