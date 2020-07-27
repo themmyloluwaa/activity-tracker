@@ -5,7 +5,7 @@ import genColors from "../utils/genColors";
 import { themeStyle, defaultAppStyle } from "../utils/appStyles";
 import { formateDate } from "../utils/dateFormatter";
 
-const ItemComponent = ({ item, icon, navigation }) => {
+const ItemComponent = ({ item, icon, navigation, buttonShow }) => {
   return (
     <ListItem
       containerStyle={{
@@ -16,7 +16,7 @@ const ItemComponent = ({ item, icon, navigation }) => {
         maxWidth: defaultAppStyle.width - 32
       }}
       onPress={() => {
-        navigation.navigate("Preview", { key: item.key });
+        navigation.navigate("Preview", { key: item.key, buttonShow });
       }}
       title={
         <View

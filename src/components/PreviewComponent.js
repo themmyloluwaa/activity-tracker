@@ -168,46 +168,50 @@ const PreviewComponent = props => {
           </View>
         </View>
       </ScrollView>
-      <Button
-        title="EDIT"
-        buttonStyle={{
-          backgroundColor: defaultAppStyle.secondaryColor
-        }}
-        onPress={() => setOverLayVisible(true)}
-        containerStyle={{
-          marginVertical: 10
-        }}
-      />
+      {props.route.params.buttonShow && (
+        <>
+          <Button
+            title="EDIT"
+            buttonStyle={{
+              backgroundColor: defaultAppStyle.secondaryColor
+            }}
+            onPress={() => setOverLayVisible(true)}
+            containerStyle={{
+              marginVertical: 10
+            }}
+          />
 
-      <Button
-        title="DELETE"
-        type="outline"
-        buttonStyle={{}}
-        containerStyle={{
-          marginVertical: 10
-        }}
-        buttonStyle={{
-          borderColor: defaultAppStyle.blackColor
-        }}
-        titleStyle={{
-          color: "red"
-        }}
-        onPress={() => {
-          Alert.alert("Delete Alert", "Are you sure you want to delete", [
-            {
-              text: "Yes",
-              onPress: () => {
-                props.delete(data.key);
-                props.navigation.goBack();
-              }
-            },
-            {
-              text: "No",
-              onPress: () => null
-            }
-          ]);
-        }}
-      />
+          <Button
+            title="DELETE"
+            type="outline"
+            buttonStyle={{}}
+            containerStyle={{
+              marginVertical: 10
+            }}
+            buttonStyle={{
+              borderColor: defaultAppStyle.blackColor
+            }}
+            titleStyle={{
+              color: "red"
+            }}
+            onPress={() => {
+              Alert.alert("Delete Alert", "Are you sure you want to delete", [
+                {
+                  text: "Yes",
+                  onPress: () => {
+                    props.delete(data.key);
+                    props.navigation.goBack();
+                  }
+                },
+                {
+                  text: "No",
+                  onPress: () => null
+                }
+              ]);
+            }}
+          />
+        </>
+      )}
       <Overlay
         isVisible={overLayVisible}
         overlayStyle={{

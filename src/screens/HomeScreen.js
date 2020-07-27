@@ -22,7 +22,7 @@ const HomeScreen = ({ navigation, ...props }) => {
   return (
     <Layout>
       <HeadingComponent />
-      <ButtonGroup
+      {/* <ButtonGroup
         onPress={i => {
           setIndex(i);
         }}
@@ -45,8 +45,8 @@ const HomeScreen = ({ navigation, ...props }) => {
           fontWeight: "bold",
           fontSize: 14
         }}
-      />
-      {renderComponent(index, navigation)}
+      /> */}
+      <ActiveComponent navigation={navigation} />
       {/* <Text
         style={{
           color: "#fff"

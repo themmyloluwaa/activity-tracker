@@ -38,13 +38,14 @@ const CompletedComponent = ({ navigation, ...props }) => {
       extraData={props.completed}
       renderItem={({ item }) => (
         <ItemComponent
-          title={item}
+          item={item}
           navigation={navigation}
           icon={{
             name: "check-circle",
             color: defaultAppStyle.primaryColor,
             onPress: () => null
           }}
+          buttonShow={false}
         />
       )}
       keyExtractor={item => item.id}
@@ -66,10 +67,11 @@ const CompletedComponent = ({ navigation, ...props }) => {
 
 const mapStateToProps = state => {
   return {
-    completed: state.activitiesReducer.activities.filter(
-      activity => new Date() > new Date(activity.endDate)
-    )
+    completed: [...state.activitiesReducer.activities]
   };
 };
+// .filter(
+//   activity => new Date() > new Date(activity.endDate)
+// )
 
 export default connect(mapStateToProps, null)(React.memo(CompletedComponent));

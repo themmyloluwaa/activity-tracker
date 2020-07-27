@@ -23,6 +23,7 @@ const ActiveComponent = ({ navigation, ...props }) => {
               color: "red",
               onPress: key => props.delete(key)
             }}
+            buttonShow={true}
           />
         )}
         keyExtractor={item => item.key}
