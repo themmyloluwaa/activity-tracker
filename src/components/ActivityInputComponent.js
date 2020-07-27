@@ -5,12 +5,16 @@ import {
   TextInput,
   StyleSheet,
   ScrollView,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Platform
 } from "react-native";
 import { Card, Button, Input } from "react-native-elements";
 import DateModalComponent from "../components/DateModalComponent";
 import { defaultAppStyle } from "../utils/appStyles";
 import { formateDate, isDateEqual } from "../utils/dateFormatter";
+import dayjs from "dayjs";
+
+dayjs().format();
 
 const ActivityInputComponent = ({ navigation, ...props }) => {
   const [description, setDescription] = useState("");
@@ -35,7 +39,11 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
     showStartDate,
     showStartTime,
     showEndDate,
-    showEndTime
+    showEndTime,
+    startDate,
+    endDate,
+    startTime,
+    endTime
   ]);
 
   useEffect(() => {
@@ -78,19 +86,41 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
 
   // date change handler
   const DateOnChange = (date, start = true) => {
-    if (start) {
-      setStartDate(date);
-    } else {
-      setEndDate(date);
+    // polyfill to ensure date picker is always closed upon rendering
+    if (Platform.OS === "android") {
+      setShowStartDate(false);
+      setShowStartDate(false);
+    }
+    if (date !== undefined) {
+      return start ? setStartDate(date) : setEndDate(date);
     }
   };
 
   // time change handler
   const TimeOnChange = (time, start = true) => {
-    if (start) {
-      setStartTime(time);
-    } else {
-      setEndTime(time);
+    // polyfill to ensure date picker is always closed upon rendering
+    if (Platform.OS === "android") {
+      setShowStartTime(false);
+      setShowEndTime(false);
+    }
+
+    if (time != undefined) {
+      // if the modal is not closed
+      let minutes = time.getMinutes();
+      // if selected date minute is less than, set minute interval to 0
+      if (minutes < 30) {
+        time.setMinutes("00");
+        // else set minute interval to 30
+      } else {
+        time.setMinutes(30);
+      }
+
+      // ensures time is always greater than selected time
+      const newTime = dayjs(time)
+        .add(10, "day")
+        .toDate();
+
+      return start ? setStartTime(newTime) : setEndTime(newTime);
     }
   };
 
@@ -197,7 +227,7 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
                 >
                   <View style={styles.timeContainer}>
                     <Text style={styles.textStyle}>
-                      {startTime.getTime() > defaultDate.getTime()
+                      {startTime > defaultDate
                         ? formateDate(startTime, "en", "time")
                         : "Start Time"}
                     </Text>
@@ -212,7 +242,7 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
                 modal={[showStartDate, setShowStartDate, true]}
               />
               <DateModalComponent
-                minimumDate={startDate}
+                minimumDate={Platform.OS === "android" && dayjs().add(7, "day")}
                 onChange={TimeOnChange}
                 mode="time"
                 value={startTime}
@@ -244,7 +274,7 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
                 <TouchableWithoutFeedback onPress={() => setShowEndTime(true)}>
                   <View style={styles.timeContainer}>
                     <Text style={styles.textStyle}>
-                      {endTime.getTime() > defaultDate.getTime()
+                      {endTime > defaultDate
                         ? formateDate(endTime, "en", "time")
                         : "End Time"}
                     </Text>
@@ -259,7 +289,7 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
                 modal={[showEndDate, setShowEndDate, false]}
               />
               <DateModalComponent
-                minimumDate={new Date()}
+                minimumDate={Platform.OS === "android" && dayjs().add(7, "day")}
                 onChange={TimeOnChange}
                 mode="time"
                 value={endTime}

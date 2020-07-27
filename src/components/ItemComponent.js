@@ -24,7 +24,13 @@ const ItemComponent = ({ item, icon, navigation, buttonShow }) => {
           >
             {item.title}
           </Text>
-          <Icon name="dot-single" type="entypo" color={item.color} size={30} />
+          <Icon
+            name="dot-single"
+            type="entypo"
+            color={item.color}
+            style={{ paddingTop: 5 }}
+            size={30}
+          />
         </View>
       }
       titleStyle={styles.titleStyle}
@@ -39,7 +45,7 @@ const ItemComponent = ({ item, icon, navigation, buttonShow }) => {
             name="clock"
             type="feather"
             size={15}
-            style={{ paddingRight: 10, fontWeight: "bold" }}
+            style={{ paddingRight: 10, fontWeight: "bold", paddingTop: 1 }}
           />
           <Text>
             {formateDate(item.startTime, "en", "time")} -{" "}
