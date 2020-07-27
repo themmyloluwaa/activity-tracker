@@ -1,13 +1,13 @@
 import React from "react";
 import { View, SafeAreaView, StatusBar } from "react-native";
-import { defaultAppStyle, themeStyle } from "../utils/appStyles";
+import { defaultAppStyle } from "../utils/appStyles";
 const Layout = props => {
   return (
     <>
       <StatusBar barStyle="light-content" />
       <SafeAreaView
         style={{
-          backgroundColor: themeStyle.backgroundColor,
+          backgroundColor: defaultAppStyle.backgroundColor,
           flex: 1
         }}
       >

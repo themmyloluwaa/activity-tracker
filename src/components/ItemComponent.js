@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
-import {  ListItem, Icon } from "react-native-elements";
-import { themeStyle, defaultAppStyle } from "../utils/appStyles";
+import { ListItem, Icon } from "react-native-elements";
+import { defaultAppStyle } from "../utils/appStyles";
 import { formateDate } from "../utils/dateFormatter";
 
 const ItemComponent = ({ item, icon, navigation, buttonShow }) => {
@@ -13,6 +13,10 @@ const ItemComponent = ({ item, icon, navigation, buttonShow }) => {
         backgroundColor: "#F9FAFC",
         marginBottom: 15,
         maxWidth: defaultAppStyle.width - 32
+      }}
+      contentContainerStyle={{
+        minHeight: 80,
+        backgroundColor: "#F9FAFC"
       }}
       onPress={() => {
         navigation.navigate("Preview", { key: item.key, buttonShow });

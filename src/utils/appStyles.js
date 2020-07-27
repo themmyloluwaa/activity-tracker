@@ -7,17 +7,14 @@ const defaultAppStyle = {
   primaryColor: "#18ce69",
   whiteColor: "#ffffff",
   blackColor: "#294948",
-  secondaryColor: "#f5a522",
+  secondaryColor: "#2ABEFD",
   tertiaryColor: "#2ABEFD",
   greyColor: "#eee",
+  backgroundColor: "#000",
+  textColor: "#fff",
   width,
   height,
   greyish: "#F7F8FA"
 };
 
-const themeStyle = {
-  backgroundColor: "#000",
-  textColor: "#fff"
-};
-
-export { defaultAppStyle, themeStyle };
+export { defaultAppStyle };

@@ -6,13 +6,15 @@ import { connect } from "react-redux";
 import { sortActivity } from "../redux/actions/activityAction";
 import { SORT_ASC, SORT_DES } from "../redux/actions/types";
 const SortComponent = props => {
-  const isTrue = false;
   return (
     <View
       style={{
         marginVertical: 10,
         flexDirection: "row",
-        justifyContent: "space-around"
+        justifyContent: "space-around",
+        backgroundColor: "#F7F8FA",
+        paddingVertical: 10,
+        borderRadius: 5
       }}
     >
       <Text
@@ -36,11 +38,11 @@ const SortComponent = props => {
           <Icon
             name="sort-ascending"
             type="material-community"
-            color={isTrue ? defaultAppStyle.blackColor : "#fff"}
+            color={defaultAppStyle.blackColor}
           />
           <Text
             style={{
-              color: isTrue ? defaultAppStyle.blackColor : "#fff",
+              color: defaultAppStyle.blackColor,
               fontSize: 16
             }}
           >
@@ -57,12 +59,12 @@ const SortComponent = props => {
           <Icon
             name="sort-descending"
             type="material-community"
-            color={isTrue ? defaultAppStyle.blackColor : "#fff"}
+            color={defaultAppStyle.blackColor}
           />
 
           <Text
             style={{
-              color: isTrue ? defaultAppStyle.blackColor : "#fff",
+              color: defaultAppStyle.blackColor,
               fontSize: 16,
               paddingTop: 2
             }}

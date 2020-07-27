@@ -5,7 +5,6 @@ import { Icon, Divider, Button, Overlay } from "react-native-elements";
 import ActivityInputComponent from "./ActivityInputComponent";
 import { defaultAppStyle } from "../utils/appStyles";
 import { formateDate } from "../utils/dateFormatter";
-import { RESET_ACTIVITY } from "../redux/actions/types";
 
 const PreviewComponent = props => {
   const [overLayVisible, setOverLayVisible] = useState(false);
@@ -227,7 +226,6 @@ const PreviewComponent = props => {
           }}
         >
           <ActivityInputComponent
-           
             cancel={() => setOverLayVisible(false)}
             editData={data}
             handleClick={editData => {

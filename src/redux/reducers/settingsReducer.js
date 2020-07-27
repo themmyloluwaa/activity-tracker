@@ -3,12 +3,16 @@ import initialState from "../initialState";
 
 const activityReducer = (state = initialState, action) => {
   switch (action.type) {
+    // set the display name
+
     case SET_DISPLAY_NAME:
-      console.log(action.name);
+      // return the state with the updated value
       return {
         ...state,
         name: action.name
       };
+
+    // return the default state
     default:
       return { ...state };
   }

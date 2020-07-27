@@ -5,7 +5,7 @@ import {
   TextInput,
   StyleSheet,
   ScrollView,
-  TouchableWithoutFeedback,
+  TouchableWithoutFeedback
 } from "react-native";
 import { Card, Button, Input } from "react-native-elements";
 import DateModalComponent from "../components/DateModalComponent";
@@ -25,7 +25,6 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
   const [showEndTime, setShowEndTime] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(true);
 
-  
   useEffect(() => {
     setButtonEnable();
   }, [
@@ -299,7 +298,8 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
     paddingHorizontal: 40,
-    paddingVertical: 20
+    paddingVertical: 20,
+    backgroundColor: "#F9FAFC"
   },
   cardTitleStyle: {
     color: "#000",
@@ -317,7 +317,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginRight: 20,
     marginTop: 5,
-    backgroundColor: defaultAppStyle.greyish
   },
   timeContainer: {
     paddingRight: 50,
@@ -327,11 +326,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 5,
-    backgroundColor: defaultAppStyle.greyish
   },
   textStyle: {
     textAlign: "center",
-    color: "#000",
+    color: defaultAppStyle.secondaryColor,
     paddingLeft: 10,
     fontWeight: "bold",
     minWidth: 100

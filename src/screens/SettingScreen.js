@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Switch, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import Layout from "../components/Layout";
 import HeadingComponent from "../components/HeadingComponent";
 import { Card, Input, Button } from "react-native-elements";
@@ -8,11 +8,8 @@ import { connect } from "react-redux";
 import { setName } from "../redux/actions/settingsAction";
 const SettingScreen = props => {
   const [disabled, setDisable] = useState(true);
-  const [isEnabled, setIsEnabled] = useState(false);
   const [nameValue, setNameValue] = useState(props.name);
 
-  const toggleSwitch = () =>
-    !disabled && setIsEnabled(previousState => !previousState);
   return (
     <Layout
       style={{
@@ -37,20 +34,6 @@ const SettingScreen = props => {
               marginTop: 10
             }}
             disabled={disabled}
-          />
-        </View>
-        <View
-          style={{
-            marginTop: 10
-          }}
-        >
-          <Text style={styles.switchLabelStyle}>Dark Mode</Text>
-          <Switch
-            trackColor={{ false: "#767577", true: "#81b0ff" }}
-            thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleSwitch}
-            value={isEnabled}
           />
         </View>
 
@@ -86,7 +69,8 @@ const styles = StyleSheet.create({
     margin: 0,
     backgroundColor: defaultAppStyle.greyish,
     minHeight: 300,
-    paddingHorizontal: 16
+    paddingHorizontal: 16,
+    justifyContent: "center"
   },
   switchLabelStyle: {
     fontSize: 16,

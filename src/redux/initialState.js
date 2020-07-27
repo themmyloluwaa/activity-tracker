@@ -1,7 +1,8 @@
-const initialSte = {
+// initial  state of the app
+
+const initialState = {
   name: "",
-  darkMode: false,
   activities: []
 };
 
-export default initialSte;
+export default initialState;

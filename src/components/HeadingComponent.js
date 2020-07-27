@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { defaultAppStyle, themeStyle } from "../utils/appStyles";
+import { defaultAppStyle } from "../utils/appStyles";
 import { connect } from "react-redux";
 
 const HeadingComponent = props => {
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10
   },
   headingSecondary: {
-    color: themeStyle.textColor,
+    color: defaultAppStyle.textColor,
     fontSize: 30,
     fontWeight: "bold"
   }

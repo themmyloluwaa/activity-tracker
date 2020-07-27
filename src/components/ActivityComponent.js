@@ -1,7 +1,7 @@
 import React from "react";
 import { FlatList, Text } from "react-native";
 import ItemComponent from "./ItemComponent";
-import { themeStyle, defaultAppStyle } from "../utils/appStyles";
+import { defaultAppStyle } from "../utils/appStyles";
 import { connect } from "react-redux";
 import { deleteActivity } from "../redux/actions/activityAction";
 import SortComponent from "./SortComponent";
