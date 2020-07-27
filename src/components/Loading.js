@@ -1,24 +1,25 @@
 import React, { PureComponent } from "react";
-import { StyleSheet, ImageBackground } from "react-native";
-import BouncingBalls from "react-native-bouncing-ball";
+import {
+  StyleSheet,
+  ImageBackground,
+  Text,
+  ActivityIndicator
+} from "react-native";
 
-const source = require("../background.jpg");
+const source = require("./background.jpg");
 export default class Loading extends PureComponent {
   render() {
     return (
       <ImageBackground style={styles.container} source={source}>
-        <BouncingBalls
-          amount={10}
-          animationDuration={5000}
-          minSpeed={30}
-          maxSpeed={200}
-          minSize={40}
-          maxSize={100}
+        <ActivityIndicator
+          color="#fff"
+          size="large"
           style={{
-            backgroundColor: "#CDFFCD"
+            height: 200,
+            backgroundColor: "transparent"
           }}
-          useNativeDriver={true}
         />
+        <Text style={{ fontSize: 40, color: "#fff" }}>Loading....</Text>
       </ImageBackground>
     );
   }
