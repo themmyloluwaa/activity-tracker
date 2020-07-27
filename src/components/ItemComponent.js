@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { ListItem, Icon } from "react-native-elements";
 import { defaultAppStyle } from "../utils/appStyles";
 import { formateDate } from "../utils/dateFormatter";
@@ -7,17 +7,7 @@ import { formateDate } from "../utils/dateFormatter";
 const ItemComponent = ({ item, icon, navigation, buttonShow }) => {
   return (
     <ListItem
-      containerStyle={{
-        minHeight: 80,
-        borderRadius: 10,
-        backgroundColor: "#F9FAFC",
-        marginBottom: 15,
-        maxWidth: defaultAppStyle.width - 32
-      }}
-      contentContainerStyle={{
-        minHeight: 80,
-        backgroundColor: "#F9FAFC"
-      }}
+      containerStyle={styles.containerStyle}
       onPress={() => {
         navigation.navigate("Preview", { key: item.key, buttonShow });
       }}
@@ -37,10 +27,7 @@ const ItemComponent = ({ item, icon, navigation, buttonShow }) => {
           <Icon name="dot-single" type="entypo" color={item.color} size={30} />
         </View>
       }
-      titleStyle={{
-        fontSize: 25,
-        fontWeight: "bold"
-      }}
+      titleStyle={styles.titleStyle}
       subtitle={
         <View
           style={{
@@ -70,5 +57,19 @@ const ItemComponent = ({ item, icon, navigation, buttonShow }) => {
     />
   );
 };
+
+const styles = StyleSheet.create({
+  containerStyle: {
+    minHeight: 80,
+    borderRadius: 10,
+    backgroundColor: "#F9FAFC",
+    marginBottom: 15,
+    maxWidth: defaultAppStyle.width - 32
+  },
+  titleStyle: {
+    fontSize: 25,
+    fontWeight: "bold"
+  }
+});
 
 export default React.memo(ItemComponent);

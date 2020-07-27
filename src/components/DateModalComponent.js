@@ -5,6 +5,7 @@ import { Overlay, Button } from "react-native-elements";
 import { defaultAppStyle } from "../utils/appStyles";
 
 const DateModalComponent = props => {
+  // desctructure the modal props options passed into the date modal
   const [modalVisible, setModalVisible, start] = props.modal;
   return (
     <Overlay isVisible={modalVisible}>
@@ -14,31 +15,17 @@ const DateModalComponent = props => {
           width: defaultAppStyle.width
         }}
       >
-        {props.mode === "date" ? (
-          <DateTimePicker
-            value={props.value}
-            minimumDate={props.minimumDate}
-            mode="date"
-            is24Hour={true}
-            display="default"
-            onChange={(event, selectedDate) =>
-              props.onChange(selectedDate, start)
-            }
-          />
-        ) : (
-          <DateTimePicker
-            value={props.value}
-            minimumDate={props.minimumDate}
-            mode="time"
-            minuteInterval={30}
-            is24Hour={true}
-            display="default"
-            onChange={(event, selectedDate) =>
-              props.onChange(selectedDate, start)
-            }
-          />
-        )}
-
+        <DateTimePicker
+          value={props.value}
+          minimumDate={props.minimumDate}
+          mode={props.mode}
+          minuteInterval={30}
+          is24Hour={true}
+          display="default"
+          onChange={(event, selectedDate) =>
+            props.onChange(selectedDate, start)
+          }
+        />
         <Button
           title="Done"
           buttonStyle={{

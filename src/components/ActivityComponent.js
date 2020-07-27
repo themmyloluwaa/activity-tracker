@@ -9,6 +9,7 @@ import SortComponent from "./SortComponent";
 const ActiveComponent = ({ navigation, ...props }) => {
   return (
     <>
+      {/* import the sort component for sorting activities */}
       <SortComponent />
 
       <FlatList
@@ -44,11 +45,14 @@ const ActiveComponent = ({ navigation, ...props }) => {
   );
 };
 
+// retrieve activities from redux store
 const mapStateToProps = state => {
   return {
     activities: state.activitiesReducer.activities
   };
 };
+
+// retrieve actions for redux
 const mapDispatchToProps = dispatch => {
   return {
     delete: key => dispatch(deleteActivity(key))

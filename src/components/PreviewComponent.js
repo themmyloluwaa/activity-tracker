@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-
-import { View, Text, ScrollView, Alert } from "react-native";
+import { View, Text, ScrollView, Alert, StyleSheet } from "react-native";
 import { Icon, Divider, Button, Overlay } from "react-native-elements";
 import ActivityInputComponent from "./ActivityInputComponent";
 import { defaultAppStyle } from "../utils/appStyles";
@@ -12,7 +11,6 @@ const PreviewComponent = props => {
 
   useEffect(() => {
     const unsubscribe = props.navigation.addListener("focus", () => {
-      console.log("entering");
       const activityVariable = props.activities.find(
         activity => activity.key === props.route.params.key
       );
@@ -25,59 +23,43 @@ const PreviewComponent = props => {
 
   useEffect(() => {
     const unsubscribe = props.navigation.addListener("blur", () => {
-      console.log("leaving");
-
       setData({});
     });
 
     return unsubscribe;
   }, [props.navigation, props.route, props.activities]);
+
+  const handleDeleteClick = () => {
+    Alert.alert("Delete Alert", "Are you sure you want to delete", [
+      {
+        text: "Yes",
+        onPress: () => {
+          props.delete(data.key);
+          props.navigation.goBack();
+        }
+      },
+      {
+        text: "No",
+        onPress: () => null
+      }
+    ]);
+  };
+
   return (
     <>
       <ScrollView>
-        <Text
-          style={{
-            fontSize: 30,
-            fontWeight: "bold",
-            opacity: 0.7
-          }}
-        >
-          {data.title}
-        </Text>
+        <Text style={styles.textStyle}>{data.title}</Text>
 
-        <View
-          style={{
-            minHeight: 50,
-            maxHeight: 400,
-            marginVertical: 20
-          }}
-        >
-          {/* <Text style={{ fontSize: 20, paddingBottom: 10 }}>Description</Text> */}
+        <View style={styles.descriptionContainer}>
           <Text style={{ fontStyle: "italic", opacity: 0.7 }}>
             {data.description}
           </Text>
         </View>
-        <Divider
-          style={{
-            backgroundColor: defaultAppStyle.secondaryColor,
-            height: 4,
-            width: 60,
-            marginVertical: 15
-          }}
-        />
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginVertical: 10
-          }}
-        >
-          <View
-            style={{
-              flexDirection: "row",
-              marginHorizontal: 20
-            }}
-          >
+
+        <Divider style={styles.dividerStyle} />
+
+        <View style={styles.dateContainer}>
+          <View style={styles.innerDateContainer}>
             <Icon
               color={defaultAppStyle.secondaryColor}
               name="calendar"
@@ -93,12 +75,7 @@ const PreviewComponent = props => {
               <Text style={{ color: "grey" }}>Start Date</Text>
             </View>
           </View>
-          <View
-            style={{
-              flexDirection: "row",
-              marginHorizontal: 20
-            }}
-          >
+          <View style={styles.innerDateContainer}>
             <Icon
               color={defaultAppStyle.secondaryColor}
               name="clock"
@@ -115,6 +92,7 @@ const PreviewComponent = props => {
             </View>
           </View>
         </View>
+
         <View
           style={{
             flexDirection: "row",
@@ -122,12 +100,7 @@ const PreviewComponent = props => {
             marginVertical: 10
           }}
         >
-          <View
-            style={{
-              flexDirection: "row",
-              marginHorizontal: 20
-            }}
-          >
+          <View style={styles.innerDateContainer}>
             <Icon
               color={defaultAppStyle.secondaryColor}
               name="calendar"
@@ -143,12 +116,8 @@ const PreviewComponent = props => {
               <Text style={{ color: "grey" }}>End Date</Text>
             </View>
           </View>
-          <View
-            style={{
-              flexDirection: "row",
-              marginHorizontal: 20
-            }}
-          >
+
+          <View style={styles.innerDateContainer}>
             <Icon
               color={defaultAppStyle.secondaryColor}
               name="clock"
@@ -193,21 +162,7 @@ const PreviewComponent = props => {
             titleStyle={{
               color: "red"
             }}
-            onPress={() => {
-              Alert.alert("Delete Alert", "Are you sure you want to delete", [
-                {
-                  text: "Yes",
-                  onPress: () => {
-                    props.delete(data.key);
-                    props.navigation.goBack();
-                  }
-                },
-                {
-                  text: "No",
-                  onPress: () => null
-                }
-              ]);
-            }}
+            onPress={() => handleDeleteClick()}
           />
         </>
       )}
@@ -240,5 +195,33 @@ const PreviewComponent = props => {
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  textStyle: {
+    fontSize: 30,
+    fontWeight: "bold",
+    opacity: 0.7
+  },
+  dividerStyle: {
+    backgroundColor: defaultAppStyle.secondaryColor,
+    height: 4,
+    width: 60,
+    marginVertical: 15
+  },
+  descriptionContainer: {
+    minHeight: 50,
+    maxHeight: 400,
+    marginVertical: 20
+  },
+  dateContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginVertical: 10
+  },
+  innerDateContainer: {
+    flexDirection: "row",
+    marginHorizontal: 20
+  }
+});
 
 export default React.memo(PreviewComponent);

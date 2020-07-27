@@ -11,6 +11,7 @@ import { Card, Button, Input } from "react-native-elements";
 import DateModalComponent from "../components/DateModalComponent";
 import { defaultAppStyle } from "../utils/appStyles";
 import { formateDate, isDateEqual } from "../utils/dateFormatter";
+
 const ActivityInputComponent = ({ navigation, ...props }) => {
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
@@ -26,6 +27,7 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
   const [buttonDisabled, setButtonDisabled] = useState(true);
 
   useEffect(() => {
+    // check that all required fields have been inputed
     setButtonEnable();
   }, [
     title,
@@ -37,6 +39,7 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
   ]);
 
   useEffect(() => {
+    // check if it's a creation request or editing request
     if (props.hasOwnProperty("editData") && props.editData !== undefined) {
       setDescription(props.editData.description);
       setTitle(props.editData.title);
@@ -47,6 +50,7 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
     }
   }, [props.editData]);
 
+  // reset all input fields
   const resetInputs = () => {
     setTitle("");
     setDescription("");
@@ -57,7 +61,10 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
     setDefaultTime(new Date());
     setButtonDisabled(true);
   };
+
+  // check input fields are filled
   const setButtonEnable = () => {
+    // check that date values are filled
     const dateEqualityCheck = isDateEqual(
       [startTime.getTime(), endTime.getTime(), endDate.getTime()],
       defaultDate.getTime()
@@ -69,6 +76,7 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
     }
   };
 
+  // date change handler
   const DateOnChange = (date, start = true) => {
     if (start) {
       setStartDate(date);
@@ -76,6 +84,8 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
       setEndDate(date);
     }
   };
+
+  // time change handler
   const TimeOnChange = (time, start = true) => {
     if (start) {
       setStartTime(time);
@@ -84,6 +94,7 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
     }
   };
 
+  // data submittion handler
   const handleSubmit = () => {
     const dataToSubmit = {
       title,
@@ -94,8 +105,10 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
       endTime
     };
 
+    // click handler passed as props
     props.handleClick(dataToSubmit);
 
+    // reset all inputs
     resetInputs();
   };
   return (
@@ -316,7 +329,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginRight: 20,
-    marginTop: 5,
+    marginTop: 5
   },
   timeContainer: {
     paddingRight: 50,
@@ -325,7 +338,7 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 5,
+    marginTop: 5
   },
   textStyle: {
     textAlign: "center",
