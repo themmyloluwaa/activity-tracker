@@ -6,40 +6,26 @@ import {
   StyleSheet,
   ScrollView,
   TouchableWithoutFeedback,
-  Alert
 } from "react-native";
 import { Card, Button, Input } from "react-native-elements";
 import DateModalComponent from "../components/DateModalComponent";
 import { defaultAppStyle } from "../utils/appStyles";
 import { formateDate, isDateEqual } from "../utils/dateFormatter";
 const ActivityInputComponent = ({ navigation, ...props }) => {
-  // console.log(props.hasOwnProperty("editData"));
-  const [description, setDescription] = useState(
-    !!props.ediData === true ? props.ediData.description : ""
-    // props.editData.description
-  );
-  const [title, setTitle] = useState(
-    !!props.ediData === true ? props.ediData.title : ""
-  );
-  const [startDate, setStartDate] = useState(
-    !!props.ediData === true ? new Date(props.ediData.startDate) : new Date()
-  );
+  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
   const [defaultDate, setDefaultTime] = useState(new Date());
-  const [endDate, setEndDate] = useState(
-    !!props.ediData === true ? new Date(props.ediData.endDate) : new Date()
-  );
-  const [startTime, setStartTime] = useState(
-    !!props.ediData === true ? new Date(props.ediData.startTime) : new Date()
-  );
-  const [endTime, setEndTime] = useState(
-    !!props.ediData === true ? new Date(props.ediData.endTime) : new Date()
-  );
+  const [endDate, setEndDate] = useState(new Date());
+  const [startTime, setStartTime] = useState(new Date());
+  const [endTime, setEndTime] = useState(new Date());
   const [showStartDate, setShowStartDate] = useState(false);
   const [showStartTime, setShowStartTime] = useState(false);
   const [showEndDate, setShowEndDate] = useState(false);
   const [showEndTime, setShowEndTime] = useState(false);
-
   const [buttonDisabled, setButtonDisabled] = useState(true);
+
+  
   useEffect(() => {
     setButtonEnable();
   }, [
@@ -52,12 +38,7 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
   ]);
 
   useEffect(() => {
-    if (
-      props.hasOwnProperty("editData") &&
-      props.editData !== undefined &&
-      props.editData.title !== undefined
-    ) {
-
+    if (props.hasOwnProperty("editData") && props.editData !== undefined) {
       setDescription(props.editData.description);
       setTitle(props.editData.title);
       setStartDate(new Date(props.editData.startDate));
@@ -126,7 +107,7 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
     >
       <Card containerStyle={styles.cardContainerStyle}>
         <Text style={styles.cardTitleStyle}>
-          {props.edit ? "Edit This Activity" : "Create a New Activity"}
+          {!!props.editData ? "Edit This Activity" : "Create a New Activity"}
         </Text>
         <View
           style={{
@@ -146,7 +127,6 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
                 </Text>
               </Text>
             }
-            // placeholder="30 Characters Maximum"
             defaultValue={title}
             onChangeText={text => {
               setTitle(text);
@@ -173,7 +153,6 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
               }}
               maxLength={250}
               defaultValue={description}
-              // placeholder="Start typing"
               multiline
               numberOfLines={4}
             />
