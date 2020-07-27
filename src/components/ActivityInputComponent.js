@@ -1,29 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
   TextInput,
   StyleSheet,
   ScrollView,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Alert
 } from "react-native";
 import { Card, Button, Input } from "react-native-elements";
 import DateModalComponent from "../components/DateModalComponent";
 import { defaultAppStyle } from "../utils/appStyles";
-import { formateDate } from "../utils/dateFormatter";
+import { formateDate, isDateEqual } from "../utils/dateFormatter";
 const ActivityInputComponent = ({ navigation, ...props }) => {
   const [description, setDescription] = useState(
-    !!props.ediData === true
-      ? props.ediData.description
-      : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    !!props.ediData === true ? props.ediData.description : ""
   );
   const [title, setTitle] = useState(
-    !!props.ediData === true ? props.ediData.title : "dkddkdk"
+    !!props.ediData === true ? props.ediData.title : ""
   );
   const [startDate, setStartDate] = useState(
     !!props.ediData === true ? new Date(props.ediData.startDate) : new Date()
   );
-  const [defaultDate] = useState(new Date());
+  const [defaultDate, setDefaultTime] = useState(new Date());
   const [endDate, setEndDate] = useState(
     !!props.ediData === true ? new Date(props.ediData.endDate) : new Date()
   );
@@ -38,16 +37,66 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
   const [showEndDate, setShowEndDate] = useState(false);
   const [showEndTime, setShowEndTime] = useState(false);
 
-  const DateOnChange = (start = true, date) => {
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+  useEffect(() => {
+    console.log(
+      isDateEqual(
+        [
+          startTime.getTime(),
+          endTime.getTime(),
+          endDate.getTime(),
+          startDate.getTime()
+        ],
+        defaultDate.getTime()
+      ),
+      "ddd"
+    );
+
+    setButtonEnable();
+  }, [
+    title,
+    description,
+    showStartDate,
+    showStartTime,
+    showEndDate,
+    showEndTime
+  ]);
+
+  const resetInputs = () => {
+    setTitle("");
+    setDescription("");
+    setStartDate(new Date());
+    setEndDate(new Date());
+    setStartTime(new Date());
+    setEndTime(new Date());
+    setDefaultTime(new Date());
+    setButtonDisabled(true);
+  };
+  const setButtonEnable = () => {
+    const dateEqualityCheck = isDateEqual(
+      [
+        startTime.getTime(),
+        endTime.getTime(),
+        endDate.getTime(),
+        startDate.getTime()
+      ],
+      defaultDate.getTime()
+    );
+    if (title.length === 0 || description.length === 0 || dateEqualityCheck) {
+      setButtonDisabled(true);
+    } else {
+      setButtonDisabled(false);
+    }
+  };
+
+  const DateOnChange = (date, start = true) => {
     if (start) {
       setStartDate(date);
     } else {
       setEndDate(date);
     }
   };
-  const TimeOnChange = (start = true, time) => {
-    console.log(time);
-
+  const TimeOnChange = (time, start = true) => {
     if (start) {
       setStartTime(time);
     } else {
@@ -66,6 +115,8 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
     };
 
     props.handleClick(dataToSubmit);
+
+    resetInputs();
   };
   return (
     <ScrollView
@@ -86,7 +137,9 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
             label="Title"
             placeholder="30 Characters Maximum"
             defaultValue={title}
-            onChangeText={text => setTitle(text)}
+            onChangeText={text => {
+              setTitle(text);
+            }}
             maxLength={25}
           />
 
@@ -152,12 +205,14 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
                 </TouchableWithoutFeedback>
               </View>
               <DateModalComponent
+                minimumDate={startDate}
                 onChange={DateOnChange}
                 mode="date"
                 value={startDate}
                 modal={[showStartDate, setShowStartDate, true]}
               />
               <DateModalComponent
+                minimumDate={startDate}
                 onChange={TimeOnChange}
                 mode="time"
                 value={startTime}
@@ -197,12 +252,14 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
                 </TouchableWithoutFeedback>
               </View>
               <DateModalComponent
+                minimumDate={startDate}
                 onChange={DateOnChange}
                 mode="date"
                 value={endDate}
                 modal={[showEndDate, setShowEndDate, false]}
               />
               <DateModalComponent
+                minimumDate={endDate}
                 onChange={TimeOnChange}
                 mode="time"
                 value={endTime}
@@ -217,7 +274,10 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
             backgroundColor: defaultAppStyle.secondaryColor,
             marginTop: 10
           }}
-          onPress={() => handleSubmit()}
+          disabled={buttonDisabled}
+          onPress={() => {
+            handleSubmit();
+          }}
         />
         <Button
           title="CANCEL"
@@ -229,9 +289,10 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
           titleStyle={{
             color: defaultAppStyle.secondaryColor
           }}
-          onPress={() =>
-            props.cancel ? props.cancel() : navigation.navigate("Home")
-          }
+          onPress={() => {
+            props.cancel ? props.cancel() : navigation.navigate("Home");
+            resetInputs();
+          }}
           containerStyle={{
             marginVertical: 10
           }}

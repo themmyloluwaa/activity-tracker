@@ -29,13 +29,7 @@ const formateDate = (date = "", locale = "en", mode = "date") => {
   dayjs.updateLocale(locale, {
     calendar: mode === "date" ? dateStyle : timeStyle
   });
-  //   if(mode === 'date'){
-  //       defaultDate= dayjs().calendar();
-  //   }else {
-  //       defaultDate =
-  //   }
 
-  //   console.log(dayjs(date).get("h"));
   if (!!date === false || date.length === 0) {
     return dayjs().calendar();
   }
@@ -43,4 +37,9 @@ const formateDate = (date = "", locale = "en", mode = "date") => {
   return dayjs(date).calendar();
 };
 
-export { formateDate };
+const isDateEqual = (dates = [], defaultDate = new Date().getTime()) => {
+  const isEqual = dates.includes(defaultDate);
+
+  return isEqual;
+};
+export { formateDate, isDateEqual };

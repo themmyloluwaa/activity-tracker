@@ -53,7 +53,7 @@ const ItemComponent = ({ item, icon, navigation }) => {
           />
           <Text>
             {formateDate(item.startTime, "en", "time")} -{" "}
-            {formateDate(item.startTime, "en", "time")}
+            {formateDate(item.endTime, "en", "time")}
           </Text>
         </View>
       }
