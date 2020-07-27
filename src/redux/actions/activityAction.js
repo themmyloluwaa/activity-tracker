@@ -1,9 +1,4 @@
-import {
-  ADD_ACTIVITY,
-  EDIT_ACTIVITY,
-  DELETE_ACTIVITY,
-  GET_ACTIVITY
-} from "./types";
+import { ADD_ACTIVITY, EDIT_ACTIVITY, DELETE_ACTIVITY } from "./types";
 import genColors from "../../utils/genColors";
 export const addActivity = activity => {
   return {
@@ -26,8 +21,6 @@ export const deleteActivity = key => ({
   key
 });
 
-
 export const sortActivity = type => ({
   type
 });
-
