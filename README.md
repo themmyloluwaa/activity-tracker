@@ -40,3 +40,5 @@ If you run into any issues while trying to run the application. Ensure that you 
 
 - [Activity Tracker Screenshots](https://drive.google.com/drive/folders/1U7lTNSJ1vHr3G0x7vW7j15xb5yWMaCJB?usp=sharing)
 - [Github Link](https://github.com/themmyloluwaa/activity-tracker)
+
+**Please ensure it's the latest update you pull**
