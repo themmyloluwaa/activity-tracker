@@ -9,7 +9,7 @@ import { SORT_ASC, SORT_DES } from "../redux/actions/types";
 const SortComponent = props => {
   return (
     <View style={styles.containerContainer}>
-      <Text style={styles.sortTextStyle}>Sort By :</Text>
+      <Text style={styles.sortTextStyle}>Filter By :</Text>
 
       <TouchableWithoutFeedback onPress={() => props.sort(SORT_ASC)}>
         <View style={styles.sortChildContainer}>
