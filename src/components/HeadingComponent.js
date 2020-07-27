@@ -7,10 +7,10 @@ const HeadingComponent = props => {
   return (
     <View style={styles.headingContainer}>
       {props.name.length === 0 && (
-        <Text style={styles.headingPrimary}>Hello,</Text>
+        <Text style={styles.headingPrimary}>Hello, There</Text>
       )}
       <Text style={styles.headingSecondary}>
-        {props.name.length === 0 ? "There" : `${props.name}'s Activities`}
+        {props.name.length > 0 && `${props.name}'s Activities`}
       </Text>
     </View>
   );

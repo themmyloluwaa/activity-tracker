@@ -6,11 +6,12 @@ import { Icon } from "react-native-elements";
 import HomeScreen from "../screens/HomeScreen";
 import NewActivityScreen from "../screens/NewActivityScreen";
 import SettingScreen from "../screens/SettingScreen";
-import { defaultAppStyle, themeStyle } from "../utils/appStyles";
+import { defaultAppStyle } from "../utils/appStyles";
 
-const { width, height } = Dimensions.get("window");
+const { width } = Dimensions.get("window");
 const BottomNavigator = createMaterialBottomTabNavigator();
 
+// bottom navigation definition for app
 const createAppBottomNavigator = () => (
   <BottomNavigator.Navigator
     initialRouteName="Home"

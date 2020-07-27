@@ -11,6 +11,14 @@ const SettingScreen = props => {
   const [disabled, setDisable] = useState(true);
   const [nameValue, setNameValue] = useState(props.name);
 
+  const handleOnPress = () => {
+    if (disabled) {
+      setDisable(false);
+    } else {
+      props.setName(nameValue);
+      setDisable(true);
+    }
+  };
   return (
     <Layout
       style={{
@@ -26,7 +34,6 @@ const SettingScreen = props => {
           }}
         >
           <Input
-            placeholder=""
             defaultValue={nameValue}
             onChangeText={text => setNameValue(text)}
             label="Display Name"
@@ -34,6 +41,7 @@ const SettingScreen = props => {
             containerStyle={{
               marginTop: 10
             }}
+            maxLength={30}
             disabled={disabled}
           />
         </View>
@@ -43,15 +51,7 @@ const SettingScreen = props => {
           containerStyle={{
             marginTop: 30
           }}
-          onPress={() => {
-            if (disabled) {
-              setDisable(false);
-            } else {
-              console.log("valled");
-              props.setName(nameValue);
-              setDisable(true);
-            }
-          }}
+          onPress={() => handleOnPress()}
           buttonStyle={{
             backgroundColor: disabled
               ? defaultAppStyle.secondaryColor
