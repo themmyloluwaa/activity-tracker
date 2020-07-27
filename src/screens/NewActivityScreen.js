@@ -5,6 +5,7 @@ import HeadingComponent from "../components/HeadingComponent";
 import ActivityInputComponent from "../components/ActivityInputComponent";
 import { connect } from "react-redux";
 import { addActivity } from "../redux/actions/activityAction";
+
 const NewActivityScreen = ({ navigation, ...props }) => {
   return (
     <Layout

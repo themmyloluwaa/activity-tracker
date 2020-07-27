@@ -6,6 +6,7 @@ import { Card, Input, Button } from "react-native-elements";
 import { defaultAppStyle } from "../utils/appStyles";
 import { connect } from "react-redux";
 import { setName } from "../redux/actions/settingsAction";
+
 const SettingScreen = props => {
   const [disabled, setDisable] = useState(true);
   const [nameValue, setNameValue] = useState(props.name);
@@ -83,6 +84,7 @@ const mapStateToProps = state => {
     name: state.settingsReducer.name
   };
 };
+
 const mapDispatchToProps = dispatch => {
   return {
     setName: name => dispatch(setName(name))

@@ -5,6 +5,7 @@ import { defaultAppStyle } from "../utils/appStyles";
 import PreviewComponent from "../components/PreviewComponent";
 import { connect } from "react-redux";
 import { editActivity, deleteActivity } from "../redux/actions/activityAction";
+
 const PreviewScreen = props => {
   return (
     <Layout
@@ -33,6 +34,7 @@ const mapStateToProps = state => {
     activities: state.activitiesReducer.activities
   };
 };
+
 const mapDispatchToProps = dispatch => {
   return {
     delete: key => dispatch(deleteActivity(key)),
