@@ -9,12 +9,16 @@ import { RESET_ACTIVITY } from "../redux/actions/types";
 
 const PreviewComponent = props => {
   const [overLayVisible, setOverLayVisible] = useState(false);
-  const [data, setData] = useState(props.activity);
+  const [data, setData] = useState({});
 
   useEffect(() => {
     const unsubscribe = props.navigation.addListener("focus", () => {
       console.log("entering");
-      props.find(props.route.params.key);
+      const activityVariable = props.activities.find(
+        activity => activity.key === props.route.params.key
+      );
+
+      setData(activityVariable);
     });
 
     return unsubscribe;
@@ -23,7 +27,7 @@ const PreviewComponent = props => {
   useEffect(() => {
     const unsubscribe = props.navigation.addListener("blur", () => {
       console.log("leaving");
-      // props.reset(RESET_ACTIVITY);
+
       setData({});
     });
 
@@ -194,7 +198,6 @@ const PreviewComponent = props => {
               text: "Yes",
               onPress: () => {
                 props.delete(data.key);
-                props.reset(RESET_ACTIVITY);
                 props.navigation.goBack();
               }
             },
