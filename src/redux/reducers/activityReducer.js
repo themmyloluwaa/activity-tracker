@@ -1,16 +1,13 @@
-import { ADD_ACTIVITY, DELETE_ACTIVITY, EDIT_ACTIVITY } from "../actions/types";
+import {
+  ADD_ACTIVITY,
+  DELETE_ACTIVITY,
+  EDIT_ACTIVITY,
+  GET_ACTIVITY
+} from "../actions/types";
 
 const initialState = {
   activities: [
-    {
-      key: "skdlmdmdls",
-      title: "Testing Component",
-      description: "",
-      startDate: new Date(),
-      endDate: new Date(),
-      startTime: new Date(),
-      endTime: new Date()
-    }
+    
   ]
 };
 
@@ -33,7 +30,7 @@ const activityReducer = (state = initialState, action) => {
           .filter(data => data.key !== action.data.key)
           .concat({ ...action.data })
       };
-
+    
     default:
       return { ...state };
   }

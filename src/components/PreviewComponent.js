@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { View, Text, ScrollView, Alert } from "react-native";
 import { Icon, Divider, Button, Overlay } from "react-native-elements";
 import ActivityInputComponent from "./ActivityInputComponent";
 import { defaultAppStyle } from "../utils/appStyles";
 
-const PreviewComponent = () => {
+const PreviewComponent = props => {
   const [overLayVisible, setOverLayVisible] = useState(false);
-
+  const [data, setData] = useState(props.activity);
+console.log(data)
+  useEffect(() => {
+    // props.find(props.route.params.key);
+  }, [props.route]);
   return (
     <>
       <ScrollView>
@@ -18,7 +22,7 @@ const PreviewComponent = () => {
             opacity: 0.7
           }}
         >
-          Information About Selected Activity
+          {/* {route.params.data.title} */}
         </Text>
 
         <View
@@ -30,34 +34,7 @@ const PreviewComponent = () => {
         >
           {/* <Text style={{ fontSize: 20, paddingBottom: 10 }}>Description</Text> */}
           <Text style={{ fontStyle: "italic", opacity: 0.7 }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est
-            laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum. sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum. in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-            occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
+            {/* {route.params.data.description} */}
           </Text>
         </View>
         <Divider

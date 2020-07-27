@@ -4,6 +4,7 @@ import { ButtonGroup, ListItem, Icon } from "react-native-elements";
 import genColors from "../utils/genColors";
 import { themeStyle, defaultAppStyle } from "../utils/appStyles";
 import { formateDate } from "../utils/dateFormatter";
+
 const ItemComponent = ({ item, icon, navigation }) => {
   return (
     <ListItem
@@ -14,8 +15,10 @@ const ItemComponent = ({ item, icon, navigation }) => {
         marginBottom: 15,
         maxWidth: defaultAppStyle.width - 32
       }}
-      onPress={() => navigation.navigate("Preview", { data: item })}
-      title={() => (
+      onPress={() => {
+        navigation.navigate("Preview", { key: item.key });
+      }}
+      title={
         <View
           style={{
             flexDirection: "row"
@@ -30,12 +33,12 @@ const ItemComponent = ({ item, icon, navigation }) => {
           </Text>
           <Icon name="dot-single" type="entypo" color={genColors()} size={30} />
         </View>
-      )}
+      }
       titleStyle={{
         fontSize: 25,
         fontWeight: "bold"
       }}
-      subtitle={() => (
+      subtitle={
         <View
           style={{
             flexDirection: "row",
@@ -53,7 +56,7 @@ const ItemComponent = ({ item, icon, navigation }) => {
             {formateDate(item.startTime, "en", "time")}
           </Text>
         </View>
-      )}
+      }
       rightElement={() => (
         <Icon
           name={icon.name}

@@ -6,8 +6,12 @@ import { defaultAppStyle } from "../utils/appStyles";
 import ActivityInputComponent from "../components/ActivityInputComponent";
 import PreviewComponent from "../components/PreviewComponent";
 import { connect } from "react-redux";
-import { editActivity, deleteActivity } from "../redux/actions/activityAction";
-const PreviewScreen = ({ navigation }) => {
+import {
+  editActivity,
+  deleteActivity,
+  getActivity
+} from "../redux/actions/activityAction";
+const PreviewScreen = props => {
   return (
     <Layout
       style={{
@@ -19,26 +23,27 @@ const PreviewScreen = ({ navigation }) => {
           alignSelf: "flex-start",
           marginVertical: 30
         }}
-        onPress={() => navigation.goBack()}
+        onPress={() => props.navigation.goBack()}
         name="arrowleft"
         size={30}
         type="antdesign"
         color={defaultAppStyle.blackColor}
       />
-      <PreviewComponent />
+      <PreviewComponent {...props} />
     </Layout>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    activities: state.activitiesReducer.activities
+    activity: state.activitiesReducer.activities
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     delete: key => dispatch(deleteActivity(key)),
-    edit: data => dispatch(editActivity(data))
+    edit: data => dispatch(editActivity(data)),
+    find: key => dispatch(getActivity(key))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(PreviewScreen);

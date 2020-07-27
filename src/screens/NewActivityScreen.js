@@ -23,7 +23,10 @@ const NewActivityScreen = ({ navigation, ...props }) => {
       </View>
       <ActivityInputComponent
         navigation={navigation}
-        handleClick={data => props.add(data)}
+        handleClick={data => {
+          props.add(data);
+          navigation.navigate("Home");
+        }}
       />
     </Layout>
   );

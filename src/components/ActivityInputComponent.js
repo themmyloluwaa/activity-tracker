@@ -56,7 +56,6 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
   };
 
   const handleSubmit = () => {
-    console.log("yes");
     const dataToSubmit = {
       title,
       description,
@@ -67,7 +66,6 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
     };
 
     props.handleClick(dataToSubmit);
-    navigation.navigate("Home");
   };
   return (
     <ScrollView
