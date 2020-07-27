@@ -1,17 +1,10 @@
-import React, { useState } from "react";
-import { View, Text, ScrollView, Alert } from "react-native";
+import React from "react";
 import Layout from "../components/Layout";
-import { Icon, Divider, Button, Overlay } from "react-native-elements";
+import { Icon } from "react-native-elements";
 import { defaultAppStyle } from "../utils/appStyles";
-import ActivityInputComponent from "../components/ActivityInputComponent";
 import PreviewComponent from "../components/PreviewComponent";
 import { connect } from "react-redux";
-import {
-  editActivity,
-  deleteActivity,
-  getActivity,
-  resetActivity
-} from "../redux/actions/activityAction";
+import { editActivity, deleteActivity } from "../redux/actions/activityAction";
 const PreviewScreen = props => {
   return (
     <Layout
@@ -43,9 +36,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     delete: key => dispatch(deleteActivity(key)),
-    edit: data => dispatch(editActivity(data)),
-    find: key => dispatch(getActivity(key)),
-    reset: type => dispatch(resetActivity(type))
+    edit: data => dispatch(editActivity(data))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(PreviewScreen);
