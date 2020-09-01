@@ -8,8 +8,9 @@ const HeadingComponent = props => {
     <View
       style={styles.headingContainer}
       accessible={true}
-      accessibilityLabel="Header"
+      accessibilityLabel="Hello there"
       accessibilityRole="header"
+      // accessibilityValue="Hello there"
     >
       {props.name.length === 0 && (
         <Text style={styles.headingPrimary}>Hello, There</Text>
