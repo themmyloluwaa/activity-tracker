@@ -5,13 +5,20 @@ import { connect } from "react-redux";
 
 const HeadingComponent = props => {
   return (
-    <View style={styles.headingContainer}>
+    <View
+      style={styles.headingContainer}
+      accessible={true}
+      accessibilityLabel="Header"
+      accessibilityRole="header"
+    >
       {props.name.length === 0 && (
         <Text style={styles.headingPrimary}>Hello, There</Text>
       )}
-      <Text style={styles.headingSecondary}>
-        {props.name.length > 0 && `${props.name}'s Activities`}
-      </Text>
+      {props.name.length > 0 && (
+        <Text style={styles.headingSecondary}>
+          {`${props.name}'s Activities`}
+        </Text>
+      )}
     </View>
   );
 };

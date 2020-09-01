@@ -7,7 +7,11 @@ import ActivityComponent from "../components/ActivityComponent";
 const source = require("../images/background.jpg");
 const HomeScreen = ({ navigation }) => {
   return (
-    <ImageBackground style={styles.container} source={source}>
+    <ImageBackground
+      style={styles.container}
+      source={source}
+      accessibilityRole="image"
+    >
       <Layout>
         <HeadingComponent />
         <ActivityComponent navigation={navigation} />
