@@ -9,9 +9,20 @@ import { SORT_ASC, SORT_DES } from "../redux/actions/types";
 const SortComponent = props => {
   return (
     <View style={styles.containerContainer}>
-      <Text style={styles.sortTextStyle}>Filter By :</Text>
+      <Text
+        style={styles.sortTextStyle}
+        accessibilityLabel="Sort"
+        accessibilityHint="Sort elements from oldest to latest"
+      >
+        Filter By :
+      </Text>
 
-      <TouchableWithoutFeedback onPress={() => props.sort(SORT_ASC)}>
+      <TouchableWithoutFeedback
+        onPress={() => props.sort(SORT_ASC)}
+        accessibilityLabel="Latest"
+        accessibilityHint="Sort By Latest"
+        accessibilityRole="button"
+      >
         <View style={styles.sortChildContainer}>
           <Icon
             name="sort-ascending"
@@ -22,7 +33,12 @@ const SortComponent = props => {
         </View>
       </TouchableWithoutFeedback>
 
-      <TouchableWithoutFeedback onPress={() => props.sort(SORT_DES)}>
+      <TouchableWithoutFeedback
+        onPress={() => props.sort(SORT_DES)}
+        accessibilityLabel="Oldest"
+        accessibilityHint="Sort By Oldest"
+        accessibilityRole="button"
+      >
         <View
           style={{
             flexDirection: "row"

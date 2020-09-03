@@ -12,7 +12,10 @@ const Layout = props => {
           props.layoutStyle
         ]}
       >
-        <View style={[styles.innerContainerStyle, props.style]}>
+        <View
+          style={[styles.innerContainerStyle, props.style]}
+          importantForAccessibility="no"
+        >
           {props.children}
         </View>
       </SafeAreaView>

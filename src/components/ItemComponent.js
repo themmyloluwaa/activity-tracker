@@ -8,6 +8,10 @@ const ItemComponent = ({ item, icon, navigation, buttonShow }) => {
   return (
     <ListItem
       containerStyle={styles.containerStyle}
+      accessible={true}
+      accessibilityRole="button"
+      accessibilityHint="Press me for more details on this activity"
+      accessibilityLabel="Activity Group"
       onPress={() => {
         navigation.navigate("Preview", { key: item.key, buttonShow });
       }}
@@ -16,8 +20,13 @@ const ItemComponent = ({ item, icon, navigation, buttonShow }) => {
           style={{
             flexDirection: "row"
           }}
+          accessibilityRole="text"
+          accessible={true}
         >
           <Text
+            accessibilityRole="text"
+            accessibilityLabel="Item Title"
+            accessible={true}
             style={{
               fontSize: 28
             }}
@@ -40,6 +49,9 @@ const ItemComponent = ({ item, icon, navigation, buttonShow }) => {
             flexDirection: "row",
             paddingTop: 10
           }}
+          accessibilityRole="text"
+          accessibilityLabel="Start and End Time"
+          accessible={true}
         >
           <Icon
             name="clock"
@@ -55,6 +67,10 @@ const ItemComponent = ({ item, icon, navigation, buttonShow }) => {
       }
       rightElement={() => (
         <Icon
+          accessible={true}
+          accessibilityRole="button"
+          accessibilityLabel="Press Me!"
+          accessibilityHint="Deletes this activity"
           name={icon.name}
           color={icon.color}
           onPress={() => icon.onPress(item.key)}

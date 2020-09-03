@@ -36,6 +36,7 @@ const ActiveComponent = ({ navigation, ...props }) => {
               padding: 20,
               color: defaultAppStyle.whiteColor
             }}
+            accessibilityRole="text"
           >
             Ongoing Activities
           </Text>
