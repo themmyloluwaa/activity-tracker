@@ -41,6 +41,9 @@ const SettingScreen = props => {
               onChangeText={text => setNameValue(text)}
               label="Display Name"
               labelStyle={{ paddingBottom: 10 }}
+              accessible={true}
+              accessibilityLabel="Input Name"
+              accessibilityHint="click edit button and type your name here. Click edit button again to save what you typed here."
               containerStyle={{
                 marginTop: 10
               }}
@@ -54,6 +57,9 @@ const SettingScreen = props => {
             containerStyle={{
               marginTop: 30
             }}
+            accessible={true}
+            accessibilityLabel={disabled ? "Edit" : "Save"}
+            accessibilityHint="Once clicked, editting becomes available, after editing or want to cancel, click again, your settings would be saved."
             onPress={() => handleOnPress()}
             buttonStyle={{
               backgroundColor: disabled
