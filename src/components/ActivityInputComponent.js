@@ -148,7 +148,11 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
       }}
     >
       <Card containerStyle={styles.cardContainerStyle}>
-        <Text style={styles.cardTitleStyle}>
+        <Text
+          style={styles.cardTitleStyle}
+          accessible={true}
+          accessibilityLabel="Card Header"
+        >
           {!!props.editData ? "Edit This Activity" : "Create a New Activity"}
         </Text>
         <View
@@ -169,14 +173,22 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
                 </Text>
               </Text>
             }
+            accessible={true}
+            accessibilityLabel="Title"
+            accessibilityHint="Input the title of the activity"
+            accessibilityRole="keyboardkey"
             defaultValue={title}
             onChangeText={text => {
               setTitle(text);
             }}
             maxLength={25}
           />
-
-          <Text style={styles.descriptionLabelStyle}>
+          <Text
+            style={styles.descriptionLabelStyle}
+            accessible={true}
+            accessibilityRole="text"
+            accessibilityLabel="Description Label"
+          >
             Description{" "}
             <Text
               style={{
@@ -193,6 +205,10 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
               onChangeText={text => {
                 setDescription(text);
               }}
+              accessible={true}
+              accessibilityLabel="Description"
+              accessibilityHint="Input the description of the activity"
+              accessibilityRole="keyboardkey"
               maxLength={250}
               defaultValue={description}
               multiline
@@ -215,6 +231,10 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
               >
                 <TouchableWithoutFeedback
                   onPress={() => setShowStartDate(true)}
+                  accessible={true}
+                  accessibilityLabel="Start Date"
+                  accessibilityRole="button"
+                  accessibilityHint="Choose a start date"
                 >
                   <View style={styles.dateContainer}>
                     <Text style={styles.textStyle}>
@@ -223,6 +243,10 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
                   </View>
                 </TouchableWithoutFeedback>
                 <TouchableWithoutFeedback
+                  accessible={true}
+                  accessibilityLabel="Start Time"
+                  accessibilityRole="button"
+                  accessibilityHint="Choose a start time"
                   onPress={() => setShowStartTime(true)}
                 >
                   <View style={styles.timeContainer}>
@@ -262,7 +286,13 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
                   flexDirection: "row"
                 }}
               >
-                <TouchableWithoutFeedback onPress={() => setShowEndDate(true)}>
+                <TouchableWithoutFeedback
+                  onPress={() => setShowEndDate(true)}
+                  accessible={true}
+                  accessibilityLabel="End Date"
+                  accessibilityRole="button"
+                  accessibilityHint="Choose an end date"
+                >
                   <View style={styles.dateContainer}>
                     <Text style={styles.textStyle}>
                       {endDate.getTime() > defaultDate.getTime()
@@ -271,7 +301,13 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
                     </Text>
                   </View>
                 </TouchableWithoutFeedback>
-                <TouchableWithoutFeedback onPress={() => setShowEndTime(true)}>
+                <TouchableWithoutFeedback
+                  onPress={() => setShowEndTime(true)}
+                  accessible={true}
+                  accessibilityLabel="End Time"
+                  accessibilityRole="button"
+                  accessibilityHint="Choose an end time"
+                >
                   <View style={styles.timeContainer}>
                     <Text style={styles.textStyle}>
                       {endTime > defaultDate
@@ -299,6 +335,10 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
           </View>
         </View>
         <Button
+          accessible={true}
+          accessibilityLabel="Done"
+          accessibilityRole="button"
+          accessibilityHint="Press me to complete this action"
           title="DONE"
           buttonStyle={{
             backgroundColor: defaultAppStyle.secondaryColor,
@@ -310,6 +350,10 @@ const ActivityInputComponent = ({ navigation, ...props }) => {
           }}
         />
         <Button
+          accessible={true}
+          accessibilityLabel="Cancel"
+          accessibilityRole="button"
+          accessibilityHint="Press me to cancel this action"
           title="CANCEL"
           type="outline"
           buttonStyle={{
