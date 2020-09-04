@@ -21,6 +21,12 @@ const DateModalComponent = props => {
           <DateTimePicker
             value={props.value}
             minimumDate={props.mode === "date" && props.minimumDate}
+            accessibilityHint={
+              props.mode === "date"
+                ? "Swipe up and down to select the day, month and year"
+                : "Swipe up and down to select the hour minute and pm or am"
+            }
+            accessibilityLabel={props.mode === "date" ? "Date" : "Time"}
             mode={props.mode}
             minuteInterval={30}
             is24Hour={true}
@@ -51,6 +57,12 @@ const DateModalComponent = props => {
             ? new Date(props.minimumDate)
             : props.value
         }
+        accessibilityHint={
+          props.mode === "date"
+            ? "Swipe up and down to select the day, month and year"
+            : "Swipe up and down to select the hour minute and pm or am"
+        }
+        accessibilityLabel={props.mode === "date" ? "Date" : "Time"}
         minimumDate={props.minimumDate}
         mode={props.mode}
         is24Hour={false}
