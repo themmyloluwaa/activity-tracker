@@ -40,6 +40,8 @@ const DateModalComponent = props => {
             buttonStyle={{
               backgroundColor: defaultAppStyle.tertiaryColor
             }}
+            accessibilityHint="Press me to close the picker"
+            accessibilityLabel="Done Button"
             onPress={() => setModalVisible(false)}
             containerStyle={{
               paddingHorizontal: 20,
