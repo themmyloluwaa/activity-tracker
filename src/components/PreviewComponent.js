@@ -48,7 +48,15 @@ const PreviewComponent = props => {
   return (
     <>
       <ScrollView>
-        <Text style={styles.textStyle}>{data.title}</Text>
+        <Text
+          style={styles.textStyle}
+          accessible={true}
+          accessibilityLabel="Title"
+          accessibilityHint="Title of the activity"
+          accessibilityRole="text"
+        >
+          {data.title}
+        </Text>
 
         <View style={styles.descriptionContainer}>
           <Text
@@ -64,7 +72,7 @@ const PreviewComponent = props => {
           </Text>
         </View>
 
-        <Divider style={styles.dividerStyle} />
+        <Divider style={styles.dividerStyle} accessible={false} />
 
         <View style={styles.dateContainer}>
           <View style={styles.innerDateContainer}>
@@ -72,15 +80,24 @@ const PreviewComponent = props => {
               color={defaultAppStyle.secondaryColor}
               name="calendar"
               type="antdesign"
+              accesible={false}
               containerStyle={{
                 paddingRight: 20
               }}
             />
             <View>
-              <Text style={{ fontWeight: "bold", color: "#fff" }}>
+              <Text
+                style={{ fontWeight: "bold", color: "#fff" }}
+                accessible={true}
+                accessibilityLabel="Start Date"
+                accessibilityHint="Start date of the activity"
+                accessibilityRole="text"
+              >
                 {formateDate(data.startDate)}
               </Text>
-              <Text style={{ color: "#fff" }}>Start Date</Text>
+              <Text style={{ color: "#fff" }} accessible={false}>
+                Start Date
+              </Text>
             </View>
           </View>
           <View style={styles.innerDateContainer}>
@@ -88,12 +105,19 @@ const PreviewComponent = props => {
               color={defaultAppStyle.secondaryColor}
               name="clock"
               type="feather"
+              accessible={false}
               containerStyle={{
                 paddingRight: 20
               }}
             />
             <View>
-              <Text style={{ fontWeight: "bold", color: "#fff" }}>
+              <Text
+                style={{ fontWeight: "bold", color: "#fff" }}
+                accessible={true}
+                accessibilityLabel="Start Time"
+                accessibilityHint="Start time of the activity"
+                accessibilityRole="text"
+              >
                 {formateDate(data.startTime, "en", "time")}
               </Text>
               <Text style={{ color: "#fff" }}>Start Time</Text>
@@ -113,12 +137,19 @@ const PreviewComponent = props => {
               color={defaultAppStyle.secondaryColor}
               name="calendar"
               type="antdesign"
+              accessible={false}
               containerStyle={{
                 paddingRight: 20
               }}
             />
             <View>
-              <Text style={{ fontWeight: "bold", color: "#fff" }}>
+              <Text
+                style={{ fontWeight: "bold", color: "#fff" }}
+                accessible={true}
+                accessibilityLabel="End Date"
+                accessibilityHint="End date of the activity"
+                accessibilityRole="text"
+              >
                 {formateDate(data.endDate)}
               </Text>
               <Text style={{ color: "#fff" }}>End Date</Text>
@@ -129,13 +160,20 @@ const PreviewComponent = props => {
             <Icon
               color={defaultAppStyle.secondaryColor}
               name="clock"
+              accessible={false}
               type="feather"
               containerStyle={{
                 paddingRight: 20
               }}
             />
             <View>
-              <Text style={{ fontWeight: "bold", color: "#fff" }}>
+              <Text
+                style={{ fontWeight: "bold", color: "#fff" }}
+                accessible={true}
+                accessibilityLabel="End Time"
+                accessibilityHint="End time of the activity"
+                accessibilityRole="text"
+              >
                 {" "}
                 {formateDate(data.endTime, "en", "time")}
               </Text>
@@ -148,6 +186,10 @@ const PreviewComponent = props => {
         <>
           <Button
             title="EDIT"
+            accessible={true}
+            accessibilityLabel="Edit"
+            accessibilityHint="Edit this activity"
+            accessibilityRole="button"
             buttonStyle={{
               backgroundColor: defaultAppStyle.secondaryColor
             }}
@@ -159,6 +201,10 @@ const PreviewComponent = props => {
 
           <Button
             title="DELETE"
+            accessible={true}
+            accessibilityLabel="Delete"
+            accessibilityHint="Delete this activity. I will return to homescreen when pressed."
+            accessibilityRole="button"
             type="outline"
             buttonStyle={{}}
             containerStyle={{
@@ -188,6 +234,7 @@ const PreviewComponent = props => {
             paddingTop: 200,
             height: "100%"
           }}
+          accessible={false}
         >
           <ActivityInputComponent
             cancel={() => setOverLayVisible(false)}

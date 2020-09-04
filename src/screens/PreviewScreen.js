@@ -22,6 +22,10 @@ const PreviewScreen = props => {
             alignSelf: "flex-start",
             marginVertical: 30
           }}
+          accessible={true}
+          accessibilityLabel="Go Back"
+          accessibilityHint="Pressing me will make me go back to the home screen"
+          accessibilityRole="button"
           onPress={() => props.navigation.goBack()}
           name="arrowleft"
           size={30}
@@ -50,8 +54,7 @@ const mapDispatchToProps = dispatch => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+
     resizeMode: "cover"
   }
 });
