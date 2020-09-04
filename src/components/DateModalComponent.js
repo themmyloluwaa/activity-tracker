@@ -11,12 +11,13 @@ const DateModalComponent = props => {
   const [modalVisible, setModalVisible, start] = props.modal;
   if (Platform.OS === "ios") {
     return (
-      <Overlay isVisible={modalVisible}>
+      <Overlay isVisible={modalVisible} accessible={false}>
         <View
           style={{
             backgroundColor: "#fff",
             width: defaultAppStyle.width
           }}
+          accessible={false}
         >
           <DateTimePicker
             value={props.value}
