@@ -10,7 +10,11 @@ const source = require("../images/background.jpg");
 export default class Loading extends PureComponent {
   render() {
     return (
-      <ImageBackground style={styles.container} source={source}>
+      <ImageBackground
+        style={styles.container}
+        source={source}
+        accessible={false}
+      >
         <ActivityIndicator
           color="#fff"
           size="large"
@@ -19,7 +23,14 @@ export default class Loading extends PureComponent {
             backgroundColor: "transparent"
           }}
         />
-        <Text style={{ fontSize: 40, color: "#fff" }}>Loading....</Text>
+        <Text
+          style={{ fontSize: 40, color: "#fff" }}
+          accessible={true}
+          accessibilityRole="text"
+          accessibilityLabel="Loading"
+        >
+          Loading
+        </Text>
       </ImageBackground>
     );
   }
